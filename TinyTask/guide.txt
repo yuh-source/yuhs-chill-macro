@@ -1,0 +1,16 @@
+Stages =  ["Planet Namek", "Sand Village", "Double Dungeon"]
+Act numbers = 1-8 (7 is inf, 8 is paragon, 0 is Half Hourly Challenge)
+
+FOR CUSTOM TINY TASK MACROS:
+
+save the macro as [STAGENAME + ACT NUMBER].exe
+And PUT INTO \TinyTask\ Path (should be here)
+e.g. 
+PlanetNamek7.exe - runs for infinite mode for Planet Namek
+PlanetNamek0.exe - runs in Planet Namek half hourly challenges
+
+SandVillage4.exe - runs on act 4 of sand village
+
+DoubleDungeon3.exe - runs on Double Dungeon act 3 (if legend stage is selected this is Igris)
+
+Raid4.exe - runs on raid act 4 (Rengoku)
