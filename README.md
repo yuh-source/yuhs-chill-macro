@@ -7,7 +7,7 @@
 ## Features
 
 ### Macros
-- Easy To Use Macros For Every Stage
+- Inbuilt Macros For Every Stage
 	- This Includes All Acts, Legend Stages, and Raids
 - Automatic Setups For Each Stage
 - TinyTask Support For Custom Macros
