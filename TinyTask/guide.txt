@@ -20,7 +20,7 @@ RaidStandard.exe - will run on any raid level for which a ttask script does not 
 
 PlanetNamekStandard.exe - will run on any Planet Namek level for which a ttask script does not exist
 
-ShibuyaStationAct1.exe - runs on Shibuya station act 1
+ShibuyaStation1.exe - runs on Shibuya station act 1
 
 (Because Shibuya legend stages have a different name, they will be named accordingly)
 
