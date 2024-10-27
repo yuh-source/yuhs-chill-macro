@@ -1,4 +1,4 @@
-Stages =  ["PlanetNamek", "SandVillage", "DoubleDungeon", "ShibuyaStation"]
+Stages =  ["PlanetNamek", "SandVillage", "DoubleDungeon", "ShibuyaStation", "ShibuyaAftermath]
 Act numbers = 1-8 (7 is inf, 8 is paragon, 0 is Half Hourly Challenge)
 Adding Standard After The Stage Name Will Make It A DEFAULT script for that stage that will be run if there isn't a unique script available
 
@@ -9,19 +9,14 @@ And PUT INTO \TinyTask\ (should be here)
 e.g. 
 PlanetNamek7.exe - runs for infinite mode for Planet Namek
 PlanetNamek0.exe - runs in Planet Namek half hourly challenges
+PlanetNamekStandard.exe - will run on any Planet Namek level for which a ttask script does not exist
 
 SandVillage4.exe - runs on act 4 of sand village
 
 DoubleDungeon3.exe - runs on Double Dungeon act 3 (if legend stage is selected this is Igris)
 
 Raid4.exe - runs on raid act 4 (Rengoku)
-
 RaidStandard.exe - will run on any raid level for which a ttask script does not exist
 
-PlanetNamekStandard.exe - will run on any Planet Namek level for which a ttask script does not exist
-
 ShibuyaStation1.exe - runs on Shibuya station act 1
-
-(Because Shibuya legend stages have a different name, they will be named accordingly)
-
-ShibuyaAftermath1.exe - the 1st legend stage of Shibuya station
+ShibuyaAftermath1.exe - the 1st legend stage of Shibuya station (Because Shibuya legend stages have a different name, they will be named accordingly)
