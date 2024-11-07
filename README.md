@@ -2,8 +2,6 @@
 
 [Join the Discord](https://discord.gg/aZZVgMrXCS)
 
-[Support Me](https://yuh-support.mysellix.io/)
-
 ## Features
 
 ### Macros
