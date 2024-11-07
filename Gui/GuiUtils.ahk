@@ -198,3 +198,10 @@ updateRunInfo(*) {
         runsPerHour.Text := "Runs Per Hour: " Round((displayLoopCount / timeMins) * 60, 1)
     }
 }
+
+StrInlist(var, arr) {
+    for key, value in arr
+		if (value == var)
+			return true
+    return false
+}

@@ -33,7 +33,6 @@ ui.AddText("c0xFFFFFF x10 y2", "Yuh's Chill AV Macro") ; title text
 ui.SetFont("s8")
 
 ui.AddProgress("c0x2f2f2f x0 y0 h35 w1250", 100) ; title bar
-; ui.AddProgress("c0x2f2f2f x800 y35 h602 w450", 100) ; box behind options (prevents interacting with gui elements)
 ui.AddProgress("c0x7e4141 x0 y35 h602 w800", 100) ; box behind roblox
 WinSetTransColor("0x7e4141 255", ui)
 
@@ -62,7 +61,7 @@ raidToggle.OnEvent("Click", (*) => MsgBox("Raid is heavily broken rn, dont use")
 ui.CreateTitleGroupBox("0x3fc380", 815, 315, "Private Server", , 90) ; Priv Server Box
 global usePriv := ui.AddCheckbox("c0xFFFFFF x825 y345 Checked","Use Private Server")
 global savePrivLink := ui.AddButton("x1092 y340", "Save Private Server Link")
-global psLink := ui.AddEdit("x825 y370 w400 r1", psLinkFile.read()) ; we bringing back regex wizardry with this one :speaking_head: :fire: :bangbang:
+global psLink := ui.AddEdit("x825 y370 w400 r1", psLinkFile.read()) ; we bringing back regex with this one :speaking_head: :fire: :bangbang:
 
 savePrivLink.OnEvent("Click", WritePsLink)
 

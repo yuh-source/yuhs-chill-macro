@@ -194,6 +194,9 @@ LobbyToLevel() {
         currentStage := userStage.Text
         currentAct := userAct.Value
 
+        if legendStageToggle.Value and !StrInlist("ShibuyaStation", ControlGetItems(userStage)) {
+            userStage.Add("ShibuyaStation")
+        }
         userStage.Text := EnterChallenge() ; can only select from current ddl options, currently a bug when finding shibuyaStation when u have legend stage on (because its not in ddl)
         userAct.Value := 0
         ; make the act number = 0 for challenges :D
@@ -207,6 +210,10 @@ LobbyToLevel() {
         if !MacroStart() {
             userStage.Text := currentStage
             userAct.Value := currentAct
+            if legendStageToggle.Value and StrInlist("ShibuyaStation", ControlGetItems(userStage)) and inChallenge = true{
+                userStage.Delete()
+                userstage.Add(stageArrays[2])
+            }
             inChallenge := false
             displayChallengeCount++
             challengesCompleted.Text := "Challenges Done: " displayChallengeCount
