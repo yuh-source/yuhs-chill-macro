@@ -24,6 +24,11 @@
 	- etc.
 - Process Log Of Current Activity
 
+### Discord Webhooks
+- Set Your Own Webhook To View The Live Progess
+	- Provides Macro Stats
+	- Picture Of Stage Rewards
+
 ### Automatic Functions
 - Automatic Half Hourly Challenges
 - Automatic Green Crystal Crafting
