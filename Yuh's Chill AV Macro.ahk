@@ -24,6 +24,7 @@ global tinyTaskExists := false
 global macroLoopCount := 0
 global prevChallengeTime := A_Now
 global psLinkFile := FileOpen(A_WorkingDir "\Settings\PSLink.txt", "r")
+global webhookFile := FileOpen(A_WorkingDir "\Settings\DiscordWebhook.txt", "r")
 global privRegex := "https:\/\/www\.roblox\.com(\/[a-z]{2})?\/games\/\d+\/[a-zA-Z0-9-]+(\?privateServerLinkCode=\d+)?"
 global altPrivRegex := "https://www\.roblox\.com/share\?code=fa([0-9]+([A-Za-z]+[0-9]+)+)[A-Za-z]+&type=Server"
 global globalDelay := 0
@@ -36,6 +37,8 @@ global displayChallengeCount := 0
 #Include "Gui\MacroGui.ahk"
 #Include "Gui\GuiUtils.ahk"
 
+#include "Scripts\CaptureScreen.ahk"
+#Include "Scripts\DiscordWebhook.ahk"
 #Include "Scripts\Classes.ahk"
 
 #include "Scripts\MacroUtils.ahk"

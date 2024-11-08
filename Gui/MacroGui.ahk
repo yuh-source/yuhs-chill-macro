@@ -82,6 +82,8 @@ stopButton := ui.AddButton("x935 y585 w100 h30", "Stop Macro")
 startButton.OnEvent("Click", (*) => FullMacro())
 stopButton.OnEvent("Click", (*) => ExitGui(true))
 
+webhookButton := ui.AddButton("x1055 y585 w100 h30", "Webhook")
+webhookButton.OnEvent("Click", CreateWebHookGUI)
 
 discordImage := ui.AddPic("x1180 y570", A_ScriptDir "\Images\UI\Discord.png")
 WinSetTransparent("255", discordImage)

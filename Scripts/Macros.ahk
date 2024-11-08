@@ -64,6 +64,8 @@ MacroLoop() {
         return false
     }
     InsertText(processText, "Macro Ended")
+
+    WindowCaptureToWebhook()
     
     if (DateDiff(prevChallengeTime, A_Now, 'M') <= -30 and autoChallenges.Value) or (userCraftCrystals.Value && macroLoopCount >= 25) or macroLoopCount = maxLoops or inChallenge{
         ReturnToLobby()

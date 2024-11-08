@@ -68,6 +68,8 @@ OnMessage(0x201, WM_LBUTTONDOWN) ; allow window dragging by clicking anywhere
 
 ExitGui(reloadScript := false) {
     KillTinyTask()
+    psLinkFile.Close()
+    webhookFile.Close()
     if !reloadScript {
         if WinExist("ahk_exe RobloxPlayerBeta.exe") {
             WinMove(7, 21, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
@@ -171,10 +173,38 @@ ChooseParagonPriority(*) {
     }
 }
 
+CreateWebHookGUI(*) {
+    InsertText(processText, "Set Your Webhook")
+    webhookGUI := MacroGui("+AlwaysOnTop", "Choose Your Paragon Priority")
+    webhookGUI.BackColor := "0x2f2f2f"
+
+    webhookGUI.SetFont("s11")
+    webhookGUI.AddText("x10 y10 c0xFFFFFF", "Discord Webhook URL:")
+    webhookURL := webhookGUI.AddEdit("x10 y30 w280 r1", webhookFile.Read())
+    saveWebhook := webhookGUI.AddButton("x10 y60", "Save Webhook")
+    saveWebhook.OnEvent("Click", WriteWebhookURL)
+
+    webhookGUI.Show("w300 h100")
+
+    WriteWebhookURL(*) {
+        if webhookURL.Text ~= "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$" {
+            writeWebhook := FileOpen(A_WorkingDir "\Settings\DiscordWebhook.txt", "w")
+            writeWebhook.Write(webhookURL.Text)
+            writeWebhook.Close()
+            InsertText(processText, "Saving Webhook URL")
+            webhookGUI.Destroy()
+        } else {
+            InsertText(processText, "Invalid Webhook Url")
+        }
+    }
+}
+
+
 WritePsLink(*) {
     if psLink.Text ~= privRegex or psLink.Text ~= altPrivRegex {
         local WritePS := FileOpen(A_WorkingDir "\Settings\PSLink.txt", "w")
         WritePS.Write(psLink.Text)
+        WritePS.Close()
         InsertText(processText, "Saving Priv Server Link")
     } else {
         MsgBox("invalid prive server link")
