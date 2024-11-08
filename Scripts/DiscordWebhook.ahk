@@ -1,7 +1,8 @@
 WindowCaptureToWebhook(image := imgSavePath) {
     CaptureRoblox()
 
-    thumbnailimg := A_ScriptDir "\Images\UI\him.jpg" 
+    thumbnailimg := A_ScriptDir "\Images\UI\him.jpg"
+    webhookStr := 
     webhook := Discord.Webhook(webhookFile.Read())
     image := AttachmentBuilder(imgSavePath)
     thumbnail := AttachmentBuilder(thumbnailimg)
@@ -195,8 +196,10 @@ Class EmbedBuilder {
  Class Discord {
     Class Webhook extends Discord {
        __New(webhookURL) {
-          if !RegexMatch(webhookURL, "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$")
-             throw Error("invalid webhook url")
+          if !RegexMatch(webhookURL, "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$") {
+            MsgBox(webhookURL)
+            throw Error("invalid webhook url")
+          }
           this.webhookURL := webhookURL
        }
     }

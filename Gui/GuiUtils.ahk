@@ -190,7 +190,6 @@ CreateWebHookGUI(*) {
         if webhookURL.Text ~= "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$" {
             writeWebhook := FileOpen(A_WorkingDir "\Settings\DiscordWebhook.txt", "w")
             writeWebhook.Write(webhookURL.Text)
-            writeWebhook.Close()
             InsertText(processText, "Saving Webhook URL")
             webhookGUI.Destroy()
         } else {
