@@ -168,7 +168,7 @@ ChooseParagonPriority(*) {
     }
 
     savePriority(*) {
-        global cardOrder := [prio1.Text, prio2.Text, prio3.Text]
+        global cardOrder := [prio1.Text, prio2.Text, prio3.Text, prio4.Text]
         cardPriority.Destroy()
     }
 }
