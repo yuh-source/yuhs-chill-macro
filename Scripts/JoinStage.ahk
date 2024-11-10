@@ -376,12 +376,12 @@ ShibuyaStationSetup(clickStart) {
 ShibuyaAftermathSetup(clickStart) {
     SetupStandard()
 
-    SendInput("{w down}{a down}")
-    Sleep(1600)
-    SendInput("{w up}{a up}")
+    SendInput("{a down}")
+    Sleep(800)
+    SendInput("{a up}")
 
     SendInput('{Left down}')
-    DllSleep(600)
+    DllSleep(500)
     SendInput('{Left up}')
     return VoteStart(, clickStart)
 }  
