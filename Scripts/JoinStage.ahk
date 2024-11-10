@@ -348,6 +348,23 @@ SandVillageSetup(clickStart) {
 
 DoubleDungeonSetup(clickStart) {
     SetupStandard()
+
+    SendInput("{v}")
+    Sleep(250)
+    SendInput("{a down}")
+    Sleep(2000)
+    SendInput("{a up}")
+
+    SendInput("{v}")
+    Sleep(250)
+    SendInput("{d Down}")
+    Sleep(400)
+    SendInput("{d up}")
+
+
+    SendInput('{Right down}')
+    DllSleep(750)
+    SendInput('{Right up}')
     return VoteStart(, clickStart)
 }
 
@@ -359,10 +376,12 @@ ShibuyaStationSetup(clickStart) {
 ShibuyaAftermathSetup(clickStart) {
     SetupStandard()
 
-    SendInput("{a down}")
-    Sleep(800)
-    SendInput("{w down}")
-    Sleep(4000)
+    SendInput("{w down}{a down}")
+    Sleep(1600)
     SendInput("{w up}{a up}")
+
+    SendInput('{Left down}')
+    DllSleep(600)
+    SendInput('{Left up}')
     return VoteStart(, clickStart)
 }  
