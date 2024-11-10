@@ -207,7 +207,7 @@ ParagonCardPicker(firstCard := true) {
         cardFound := false
         Sleep(1500)
         for modifier in cardOrder {
-            if ImageSearchLoop(%modifier "Path"%, 190, 270, 620, 305, 0, 3, &X, &Y) {
+            if ImageSearchLoop(%modifier "Path"%, 190, 270, 620, 305, 0, 2, &X, &Y) {
                 TpMouse("left", X, Y)
                 cardFound := true
             }

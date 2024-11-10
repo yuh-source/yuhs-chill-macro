@@ -284,10 +284,12 @@ MacroSetup(startButtonCheck := false, clickStart := true) {
     }
 
     if raidToggle.Value {
+        InsertText(processText, "Raid Setup")
         raidSetup(clickStart)
         return true
     } else {
         try {
+            InsertText(processText, userstage.text " Setup")
             %userstage.text "Setup"%(clickStart)
             return true
         }
@@ -297,11 +299,20 @@ MacroSetup(startButtonCheck := false, clickStart := true) {
     return false
 }
 
-RaidSetup(clickStart) {
-    InsertText(processText, "Raid Setup")
+SetupStandard() {
     SendInput("{Tab}")
     OpenMiscSettings()
     Sleep(750)
+    loop 10 {
+        SendInput("{WheelDown}")
+        Sleep(50)
+    }
+    Sleep(100)
+}
+
+RaidSetup(clickStart) {
+    SetupStandard()
+
     SendInput("{w down}")
     DllSleep(300)
     SendInput("{d down}")
@@ -309,45 +320,25 @@ RaidSetup(clickStart) {
     SendInput("{w up}{d up}")
     Sleep(100)
 
-    loop 10 {
-        SendInput("{WheelDown}")
-        Sleep(50)
-    }
-
     SendInput("{Right down}")
     DllSleep(1470)
     SendInput("{Right up}")
     Sleep(100)
 
     LookDown()
-    
     return VoteStart(, clickStart)
 }
 
 PlanetNamekSetup(clickStart) {
-    InsertText(processText, userstage.text " Setup")
-    SendInput("{Tab}")
-    OpenMiscSettings()
-    Sleep(750)
-    loop 10 {
-        SendInput("{WheelDown}")
-        Sleep(50)
-    }
-    Sleep(100)
+    SetupStandard()
     LookDown()
     return VoteStart(, clickStart)
 }
 
 SandVillageSetup(clickStart) {
-    InsertText(processText, userstage.text " Setup")
-    SendInput("{Tab}")
-    OpenMiscSettings()
-    Sleep(750)
-    loop 10 {
-        SendInput("{WheelDown}")
-        Sleep(50)
-    }
+    SetupStandard()
     LookDown()
+
     Sleep(150)
     SendInput('{Left down}')
     DllSleep(310)
@@ -356,44 +347,22 @@ SandVillageSetup(clickStart) {
 }
 
 DoubleDungeonSetup(clickStart) {
-    InsertText(processText, userstage.text " Setup")
-    SendInput("{Tab}")
-    Sleep(750)
-    loop 10 {
-        SendInput("{WheelDown}")
-        Sleep(50)
-    }
+    SetupStandard()
     return VoteStart(, clickStart)
 }
 
 ShibuyaStationSetup(clickStart) {
-    InsertText(processText, userstage.text " Setup")
-    SendInput("{Tab}")
-    OpenMiscSettings()
-    Sleep(750)
-
-    loop 10 {
-        SendInput("{WheelDown}")
-        Sleep(50)
-    }
+    SetupStandard()
     return VoteStart(, clickStart)
 }
 
 ShibuyaAftermathSetup(clickStart) {
-    InsertText(processText, userstage.text " Setup")
-    SendInput("{Tab}")
-    OpenMiscSettings()
-    Sleep(750)
+    SetupStandard()
 
     SendInput("{a down}")
     Sleep(800)
     SendInput("{w down}")
     Sleep(4000)
     SendInput("{w up}{a up}")
-
-    loop 10 {
-        SendInput("{WheelDown}")
-        Sleep(50)
-    }
     return VoteStart(, clickStart)
 }  
