@@ -85,6 +85,17 @@ EnterRaid() {
     return
 }
 
+EnterBossRush() {
+    AreaMenuTP("Raids")
+    Sleep(1000)
+
+    SendInput("{s down}{d down}")
+    Sleep(1200)
+    SendInput("{s up}{d up}")
+
+    SendInput("{e}")
+}
+
 EnterChallenge() {
     AreaMenuTP("Challenges")
     Sleep(1000)
@@ -219,6 +230,14 @@ LobbyToLevel() {
             challengesCompleted.Text := "Challenges Done: " displayChallengeCount
         }
         return false
+    }
+
+    if bossToggle.Value {
+        InsertText(processText, "Entering Boss Rush")
+        EnterBossRush()
+        Sleep(200)
+        TpMouse("Left", 210, 430)
+        return true
     }
 
     if raidToggle.Value {

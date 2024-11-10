@@ -52,11 +52,13 @@ global legendStageToggle := ui.AddCheckbox("c0xFFFFFF x1040 y211","Legend Stage"
 userAct.OnEvent("Change", ChooseParagonPriority)
 legendStageToggle.OnEvent("Click", (*) => AltStageActArrays(userStage.Text))
 
-ui.CreateTitleGroupBox("0xff4c30", 815, 250, "Raid Options", , 55) ; Raid Box
+ui.CreateTitleGroupBox("0xff4c30", 815, 250, "Raid Options", 205, 55) ; Raid Box
 global raidToggle := ui.AddCheckbox("c0xFFFFFF x825 y275", "Select For Raid")
 global userRaidAct := ui.AddDDL("x930 y270 w50 r4", raidActArray)
-
 raidToggle.OnEvent("Click", (*) => MsgBox("Raid is heavily broken rn, dont use"))
+
+ui.CreateTitleGroupBox("0xff7b00", 1035, 250, "Boss Rush", 200, 55)
+global bossToggle := ui.AddCheckbox("c0xFFFFFF x1045 y275", "Select For Boss Rush")
 
 ui.CreateTitleGroupBox("0x3fc380", 815, 315, "Private Server", , 90) ; Priv Server Box
 global usePriv := ui.AddCheckbox("c0xFFFFFF x825 y345 Checked","Use Private Server")
