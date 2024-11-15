@@ -39,6 +39,8 @@ global immunityPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\immuni
 global stageInfoPath := "*50 " A_ScriptDir "\Images\Level Elements\Stage Info.png"
 global settingsPath := "*160 " A_ScriptDir "\Images\Level Elements\Settings Icon.png"
 
+; refactor above paths
+
 TpMouse(button, x, y, clickDelay := 0) {
     MouseMove(x, y)
     MouseMove(1, 0, , "R")
@@ -60,36 +62,29 @@ DllSleep(lPeriod) {
 }
 
 FocusRoblox() {
-    local robloxSearchCount := 0
-    while !WinExist("ahk_exe RobloxPlayerBeta.exe") {
-        Sleep(1000)
-        robloxSearchCount++
-
-        if robloxSearchCount >= 15 {
-            InsertText(processText, "Cant Find Roblox")
-            AttemptJoin()
-            return false
+    loop 15 {
+        if WinExist("ahk_exe RobloxPlayerBeta.exe") {
+            WinActivate("ahk_exe RobloxPlayerBeta.exe")
+            return true
         }
+        Sleep(1000)
     }
-    WinActivate("ahk_exe RobloxPlayerBeta.exe")
-    return WinExist("ahk_exe RobloxPlayerBeta.exe")
+    InsertText(processText, "Cant Find Roblox")
+    AttemptJoin()
+    return false
 }
 
 ImageSearchLoop(imagePath, Xtl, Ytl, Xbr, Ybr, searchDelay := 1000, maxRetryCount := 15, &FoundX := 0, &FoundY := 0) {
-    CoordMode("Pixel", "Window")
-    local searchAttempts := 0
-
-    While searchAttempts <= maxRetryCount {
-        if !FocusRoblox() {
-            break
-        }
-
-        if ImageSearch(&FoundX, &FoundY, Xtl, Ytl, Xbr, Ybr, imagePath) {
+    static coordSet := CoordMode("Pixel", "Window")  ; Set once, static
+    
+    loop maxRetryCount + 1 {
+        if !FocusRoblox()
+            return false
+            
+        if ImageSearch(&FoundX, &FoundY, Xtl, Ytl, Xbr, Ybr, imagePath)
             return true
-        }
-
-        searchAttempts++
-        Sleep(searchDelay)
+            
+        DllSleep(searchDelay)
     }
     return false
 }
@@ -116,21 +111,20 @@ ClickRewards(rewardAmount := 10) {
 }
 
 AreaMenuTP(area) {
+    static areaCoords := {
+        Challenges: [375, 300],
+        Evolve: [540, 300],
+        Raids: [540, 370]
+    }
+
     TpMouse("Left", 40, 350)
-    
     Sleep(150)
     InsertText(processText, "Teleporting to " area)
 
-    if area = "Challenges" {
-        TpMouse("Left", 375, 300)
+    if coords := areaCoords.HasOwnProp(area) ? areaCoords[area] : false {
+        TpMouse("Left", coords[1], coords[2])
+        TpMouse("Left", 570, 230, 150)
     }
-    else if area = "Evolve"{
-        TpMouse("Left", 540, 300)
-    }
-    else if area = "Raids" {
-        TpMouse("Left", 540, 370)
-    } 
-    TpMouse("Left", 570, 230, 150)
     return
 }
 
@@ -186,7 +180,7 @@ CraftCrystals() {
     TpMouse("Left", 490, 230)
 }
 
-LookDown() { ; https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-sendinput
+LookDown() {
     MouseGetPos(&x, &y)
     SendInput(Format("{Click {} {} Right}", x, y))
     Sleep(100)
