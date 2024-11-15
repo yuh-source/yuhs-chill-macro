@@ -146,16 +146,16 @@ ChooseParagonPriority(*) {
         ; ["thrice", "regen", "strong", "shielded", "exploding", "fast", "revitalise", "quake", "champions", "dodge", "drowsy", "immunity"]
 
         cardPriority.AddText("c0xFFFFFF x15 y15", "First Priority")
-        prio1 := cardPriority.AddDDL("x15 y30 w100 Choose2", paragonOptions)
+        prio1 := cardPriority.AddDDL("x15 y30 w100 Choose4", paragonOptions)
 
         cardPriority.AddText("c0xFFFFFF x130 y15", "Second Priority")
-        prio2 := cardPriority.AddDDL("x130 y30 w100 Choose1", paragonOptions)
+        prio2 := cardPriority.AddDDL("x130 y30 w100 Choose2", paragonOptions)
 
         cardPriority.AddText("c0xFFFFFF x245 y15", "Third Priority")
-        prio3 := cardPriority.AddDDL("x245 y30 w100 Choose9", paragonOptions)
+        prio3 := cardPriority.AddDDL("x245 y30 w100 Choose3", paragonOptions)
 
         cardPriority.AddText("c0xFFFFFF x360 y15", "Fourth Priority")
-        prio4 := cardPriority.AddDDL("x360 y30 w100 Choose4", paragonOptions)
+        prio4 := cardPriority.AddDDL("x360 y30 w100 Choose11", paragonOptions)
 
         confirmButton := cardPriority.AddButton("x188 y65 w100", "Confirm")
         confirmButton.OnEvent("Click", savePriority)
