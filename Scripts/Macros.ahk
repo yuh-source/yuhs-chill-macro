@@ -31,25 +31,25 @@ MacroLoop() {
         InsertText(processText, "Finished " userstage.text userAct.Value ".exe")
     } else {
         try {
-            if !raidToggle.Value {
-                try {
-                    %userstage.Text "Act" useract.Value%()
-                    InsertText(processText, userstage.Text useract.Value " Done")
-                } catch {
-                    %userstage.Text "Standard"%()
-                    InsertText(processText, userStage.Text " Standard Done")
-                }
+            stage := raidToggle.Value ? "Raid" : userStage.Text
+            act := raidToggle.Value ? userRaidAct.Value : userAct.Value
+            if RunActFunc(stage, act) {
+                InsertText(processText, stage act " Done")
             } else {
-                try {
-                    %"Raid" userRaidAct.Value%()
-                    InsertText(processText, "Raid" userRaidAct.Value " Done")
-                } catch {
-                    RaidStandard()
-                    InsertText(processText, "Raid Standard Done")
-                }
+                InsertText(processText, stage " Standard Done")
             }
         } catch {
             InsertText(processText, "Unable To Find Stage/Act")
+        }
+    }
+
+    RunActFunc(stage, act) {
+        try {
+            %stage "Act" act%()
+            return true
+        } catch {
+            %stage "Standard"%()
+            return false
         }
     }
 
