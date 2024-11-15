@@ -80,8 +80,8 @@ MacroStart() {
     if !MacroSetup(true)
         return false
     while MacroLoop() {
-        displayLoops.Text := "Macro Loops: " ++displayLoopCount
-        if ++macroLoopCount
+        displayLoops.Text := "Macro Loops: " displayLoopCount++
+        if macroLoopCount++
             continue
     }
     return false
