@@ -36,7 +36,6 @@ JoinGame() {
 
     WinGetPos(&X, &Y,,, ui)
     WinMove(X - 8, Y + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
-    return
 }
 
 JoinServer() {
@@ -48,12 +47,9 @@ JoinServer() {
             InsertText(processText, "Invalid Private Server")
             return
         }
-    } else {
-        InsertText(processText, "Waiting For User To Join Roblox")
-        return run("https://www.roblox.com/games/16146832113/UPDATE-0-5-Anime-Vanguards")
     }
+    MsgBox("Please Save A Private Server Link")
 }
-; https://www.roblox.com/games/16146832113/RELEASE-Anime-Vanguards?privateServerLinkCode=28074937708422366185152340790991
 
 EnterTeleporter() {
     TpMouse("Left", 100, 290)
@@ -109,26 +105,22 @@ EnterChallenge() {
     SendInput("{w up}")
     SendInput("{d down}{s down}")
     Sleep(3000)
-    if ImageSearchLoop(planetNamekChallengePath, 490, 150, 620, 220, 500, 2) {
-        InsertText(processText, "Found PlanetNamek")
-        SendInput("{d up}{s up}")
-        return "PlanetNamek"
+
+    static challenges := Map(
+        "planetNamekChallengePath", "PlanetNamek",
+        "sandVillageChallengePath", "SandVillage",
+        "doubleDungeonChallengePath", "DoubleDungeon",
+        "shibuyaStationChallengePath", "ShibuyaStation"
+    )
+
+    for path, name in challenges {
+        if ImageSearchLoop(%path%, 490, 150, 620, 220, 500, 2) {
+            InsertText(processText, "Found " name)
+            SendInput("{d up}{s up}")
+            return name
+        }
     }
-    else if ImageSearchLoop(sandVillageChallengePath, 490, 150, 620, 220, 500, 2) {
-        InsertText(processText, "Found SandVillage")
-        SendInput("{d up}{s up}")
-        return "SandVillage"
-    }
-    else if ImageSearchLoop(doubleDungeonChallengePath, 490, 150, 620, 220, 500, 2) {
-        InsertText(processText, "Found DoubleDungeon")
-        SendInput("{d up}{s up}")
-        return "DoubleDungeon"
-    }
-    else if ImageSearchLoop(shibuyaStationChallengePath, 490, 150, 620, 220, 500, 2) {
-        InsertText(processText, "Found ShibuyaStation")
-        SendInput("{d up}{s up}")
-        return "ShibuyaStation"
-    }
+
     TpMouse("Left", 710, 470)
     SendInput("{d up}{s up}")
     return FullMacro()
@@ -151,41 +143,33 @@ SelectStage(stageName, stageArray, arrayToggle := false) {
 
 SelectAct(actIndex, arrayToggle := false) {
     TpMouse("Left", 430, 285)
+    
     if actIndex <= 4 {
         loop 3 {
             SendInput("{WheelUp}")
             Sleep(50)
         }
-        local clickIndex := actIndex
-    }
-    else if actIndex > 4 {
+        clickY := 220 + (50 * actIndex)
+    } else {
         loop 3 {
             SendInput("{WheelDown}")
             Sleep(50)
         }
-        local clickIndex := actIndex - 4
+        clickY := 220 + (50 * (actIndex - 4))
     }
 
     Sleep(100)
-    TpMouse("Left", 430, 220 + (50*clickIndex), 50)
+    TpMouse("Left", 430, clickY, 50)
 
     if userAct.Value = 8 {
         SendInput("{Tab}")
         Sleep(500)
-
         TpMouse("Left", 780, 250)
     }
 
     TpMouse("Left", 370, 450)
-
-    Sleep(200)
-
-    if !arrayToggle {
-        TpMouse("Left", 560, 460, 150)
-    } else {
-        TpMouse("Left", 560, 500, 150)
-    }
-    return
+    Sleep(100)
+    TpMouse("Left", 560, arrayToggle ? 500 : 460, 150)
 }
 
 LobbyToLevel() {
@@ -208,7 +192,7 @@ LobbyToLevel() {
         if legendStageToggle.Value and !StrInlist("ShibuyaStation", ControlGetItems(userStage)) {
             userStage.Add("ShibuyaStation")
         }
-        userStage.Text := EnterChallenge() ; can only select from current ddl options, currently a bug when finding shibuyaStation when u have legend stage on (because its not in ddl)
+        userStage.Text := EnterChallenge()
         userAct.Value := 0
         ; make the act number = 0 for challenges :D
 
