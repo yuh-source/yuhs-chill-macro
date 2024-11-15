@@ -119,7 +119,6 @@ AltStageActArrays(currentStage) {
             userStage.Choose(index)
         }
     }
-    ChangeDDL(userAct, actArrays, legendStageToggle.Value)
 }
 
 ChangeDDL(GuiControl, uiArrays, toggleVar := 0) {
