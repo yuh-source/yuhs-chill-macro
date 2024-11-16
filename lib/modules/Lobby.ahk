@@ -104,7 +104,53 @@ class Lobby {
         SendInput("{e}")
     
         Utils.wClick("Left", 270, 300)
-        this.CraftCrystals()
+        lobbyUI.CraftCrystals()
+    }
+}
+
+class LobbyUI {
+    static SelectStage(stageName) {
+        if MacroGui.ui["legToggle"].Value {
+            Utils.wClick("Left", 480, 515)
+        }
+        Sleep(150)
+    
+        For index, stage in MacroGui.stageArrays[MacroGui.ui["legToggle"].Value + 1] {
+            if stageName = stage {
+                Utils.wClick("Left", 200, (235 + (50*index)))
+            }
+        }
+    }
+
+    static SelectAct(actIndex) {
+        Utils.wClick("Left", 430, 285)
+        
+        if actIndex <= 4 {
+            loop 3 {
+                SendInput("{WheelUp}")
+                Sleep(50)
+            }
+            clickY := 220 + (50 * actIndex)
+        } else {
+            loop 3 {
+                SendInput("{WheelDown}")
+                Sleep(50)
+            }
+            clickY := 220 + (50 * (actIndex - 4))
+        }
+    
+        Sleep(100)
+        Utils.wClick("Left", 430, clickY, 50)
+    
+        if MacroGui.ui["userAct"].Value = 8 {
+            SendInput("{Tab}")
+            Sleep(500)
+            Utils.wClick("Left", 780, 250)
+        }
+    
+        Utils.wClick("Left", 370, 450)
+        Sleep(100)
+        Utils.wClick("Left", 560, MacroGui.ui["legToggle"].Value ? 500 : 460, 150)
     }
 
     static CraftCrystals() {
