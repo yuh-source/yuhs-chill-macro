@@ -1,43 +1,48 @@
 ﻿#Requires AutoHotkey v2.0
 
-global playButtonPath := "*75 " A_ScriptDir "\Images\Lobby\Play Button.png"
-global stageBannerPath := "*100 " A_ScriptDir "\Images\Lobby\Stages.png"
-global notEnoughItemsPath := "*100 " A_ScriptDir "\Images\Lobby\Not Enough Items.png"
+class Images {
+    static Lobby := {
+        Play: "*75 " A_ScriptDir "\Images\Lobby\Play Button.png",
+        Stages: "*100 " A_ScriptDir "\Images\Lobby\Stages.png",
+        NotEnoughItems: "*100 " A_ScriptDir "\Images\Lobby\Not Enough Items.png",
+        
+        Challenges: {
+            PlanetNamek: "*100 " A_ScriptDir "\Images\Lobby\PlanetNamek Challenge Banner.png",
+            SandVillage: "*100 " A_ScriptDir "\Images\Lobby\SandVillage Challenge Banner.png",
+            DoubleDungeon: "*100 " A_ScriptDir "\Images\Lobby\DoubleDungeon Challenge Banner.png",
+            ShibuyaStation: "*100 " A_ScriptDir "\Images\Lobby\ShibuyaStation Challenge Banner.png"
+        }
+    }
 
-global planetNamekChallengePath := "*100 " A_ScriptDir "\Images\Lobby\PlanetNamek Challenge Banner.png"
-global sandVillageChallengePath := "*100 " A_ScriptDir "\Images\Lobby\SandVillage Challenge Banner.png"
-global doubleDungeonChallengePath := "*100 " A_ScriptDir "\Images\Lobby\DoubleDungeon Challenge Banner.png"
-global shibuyaStationChallengePath := "*100 " A_ScriptDir "\Images\Lobby\ShibuyaStation Challenge Banner.png"
+    static LevelElements := {
+        VoteStart: "*75 " A_ScriptDir "\Images\Level Elements\Vote Start.png",
+        ReturnToLobby: "*100 " A_ScriptDir "\Images\Level Elements\Return To Lobby Button.png",
+        GemsReward: "*75 " A_ScriptDir "\Images\Level Elements\Gems Reward.png",
+        StageInfo: "*50 " A_ScriptDir "\Images\Level Elements\Stage Info.png",
+        Settings: "*160 " A_ScriptDir "\Images\Level Elements\Settings Icon.png",
 
-global voteStartPath := "*75 " A_ScriptDir "\Images\Level Elements\Vote Start.png"
-global returnLobbyButtonPath := "*100 " A_ScriptDir "\Images\Level Elements\Return To Lobby Button.png"
-global gemsRewardPath := "*75 " A_ScriptDir "\Images\Level Elements\Gems Reward.png"
+        PlanetNamek: {
+            Wave10: "*100 " A_ScriptDir "\Images\Level Elements\Planet Namek\Namek Wave 10.png",
+            Wave10Alt: "*100 " A_ScriptDir "\Images\Level Elements\Planet Namek\Namek Wave 10 Alt.png"
+        },
 
-global namek10Path := "*100 " A_ScriptDir "\Images\Level Elements\Planet Namek\Namek Wave 10.png"
-global namek10AltPath := "*100 " A_ScriptDir "\Images\Level Elements\Planet Namek\Namek Wave 10 Alt.png"
+        Raid: {
+            Wave10: "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 10.png",
+            Wave10Alt: "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 10 Alt.png",
+            Wave15: "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 15.png",
+            Wave15Alt: "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 15 Alt.png",
+            Wave20: "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 20.png",
+            Wave20Alt: "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 20 Alt.png"
+        },
 
-global raid10Path := "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 10.png"
-global raid10AltPath := "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 10 Alt.png"
-global raid15Path := "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 15.png"
-global raid15AltPath := "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 15 Alt.png"
-global raid20Path := "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 20.png"
-global raid20AltPath := "*100 " A_ScriptDir "\Images\Level Elements\Raid\Raid Wave 20 Alt.png"
-
-global thricePath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\thrice.png"
-global strongPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\strong.png"
-global regenPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\regen.png"
-global shieldedPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\shielded.png"
-global explodingPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\exploding.png"
-global fastPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\fast.png"
-global revitalisePath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\revitalise.png"
-global quakePath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\quake.png"
-global championsPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\champions.png"
-global dodgePath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\dodge.png"
-global drowsyPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\drowsy.png"
-global immunityPath := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\immunity.png"
-
-global stageInfoPath := "*50 " A_ScriptDir "\Images\Level Elements\Stage Info.png"
-global settingsPath := "*160 " A_ScriptDir "\Images\Level Elements\Settings Icon.png"
+        Paragon: Map([
+            "Thrice", "Strong", "Regen", "Shielded", "Exploding", "Fast",
+            "Revitalise", "Quake", "Champions", "Dodge", "Drowsy", "Immunity"
+        ].Map((name) => [
+            name, "*25 " A_ScriptDir "\Images\Level Elements\Paragon\" StrLower(name) ".png"
+        ]))
+    }
+}
 
 ; refactor above paths
 

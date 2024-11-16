@@ -88,7 +88,7 @@ ChangeDDL(GuiControl, uiArrays, toggleVar := 0) {
 
 ChooseParagonPriority(*) {
     if userAct.Value = 8 {
-        static prio1, prio2, prio3
+        ; static prio1, prio2, prio3, prio4
         InsertText(processText, "Choose Your Paragon Priority")
         cardPriority := MacroGui("+AlwaysOnTop", "Choose Your Paragon Priority")
         cardPriority.BackColor := "0x2f2f2f"
