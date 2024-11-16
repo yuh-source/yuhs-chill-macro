@@ -67,7 +67,6 @@ class TTaskMethods {
         }
         try {
             ProcessClose(PID)
-            return
         }
     }
 }
@@ -120,7 +119,7 @@ class Utils {
             DllCall("WaitForSingleObject", "uptr", hTimer, "UInt", 0xFFFFFFFF), DllCall('CloseHandle', "uptr", hTimer)
     }
 
-    static ImageSearchLoop( &FoundX, &FoundY, X1, Y1, X2, Y2, imagePath, searchDelay := 1000, maxRetryCount := 15) {
+    static ImageSearchLoop(X1, Y1, X2, Y2, imagePath, searchDelay := 1000, maxRetryCount := 15, &FoundX := 0, &FoundY := 0) {
         loop maxRetryCount + 1 {
             if !Roblox.Focus()
                 return false
@@ -158,7 +157,7 @@ class Roblox {
 
     static Attach() {
         MacroGui.addProcess("Cant Find Roblox")
-        this.Server()
+        this.Join()
         WinWait("ahk_exe RobloxPlayerBeta.exe")
     
         MacroGui.addProcess("Attatching to Roblox")
@@ -169,3 +168,4 @@ class Roblox {
         WinMove(X - 8, Y + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
     }
 }
+
