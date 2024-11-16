@@ -17,6 +17,13 @@ OnMessage(0x201, WM_LBUTTONDOWN)
 
 OnMessage(0x0003, WM_MOVE)
 
+updateRunInfo() {
+    MacroGui.ui["displayLoops"].Text := "Macro Loops: " Macro.loopCount
+    MacroGui.ui["timeElapsed"].Text := "Macro Runtime: " (A_Now - Macro.startTime) // 60000 " Mins"
+    MacroGui.ui["rph"].Text := "Runs Per Hour: " (Macro.loopCount / ((A_Now - Macro.startTime) // 3600000))
+    MacroGui.ui["displayChals"].Text := "Challenges Done: " Macro.chalCount
+}
+
 class MacroGui {
     static stageArrays := [["PlanetNamek", "SandVillage", "DoubleDungeon", "ShibuyaStation"], ["SandVillage", "DoubleDungeon", "ShibuyaAftermath"]]
     static actArrays := [[1, 2, 3, 4, 5, 6, "Infinite", "Paragon"], [1, 2, 3]]
@@ -75,13 +82,20 @@ class MacroGui {
 
         this.ui.AddTitleGroupBox("0x3fc380", 815, 315, "Private Server", , 90) ; Priv Server Box
         global usePriv := this.ui.AddCheckbox("vprivToggle c0xFFFFFF x825 y345 Checked","Use Private Server")
-        this.ui.AddButton("vsaveLink x1092 y340", "Save Private Server Link").OnEvent("Click", (*) => this.WritePsLink())
+        this.ui.AddButton("vsaveLink x1092 y340", "Save Private Server Link").OnEvent("Click", (*) => this.savePSLink())
         this.ui.AddEdit("vpslink x825 y370 w400 r1", FileMethods.Read(A_ScriptDir "\Settings\PSLink.txt"))
 
         this.ui.AddTitleGroupBox("0xc300ff", 815, 415, "Process Log", 225, 150)
         this.ui.SetFont("s11")
         this.ui.AddText("vprocess c0xFFFFFF x830 y438 w180 r7", "")
 
+        this.ui.AddTitleGroupBox("0xff00aa", 1050, 415, "Macro Info", 185, 150)
+        this.ui.SetFont("s11")
+        this.ui.AddText("vdisplayLoops c0xFFFFFF x1065 y438 w155", "Macro Loops: " Macro.loopCount)
+        this.ui.AddText("vtimeElapsed c0xFFFFFF x1065 y458 w155", "Macro Runtime: " 0 " Mins")
+        this.ui.AddText("vrph c0xFFFFFF x1065 y478 w155", "Runs Per Hour: " 0)
+        this.ui.AddText("vdisplayChals c0xFFFFFF x1065 y498 w155", "Challenges Done: " Macro.chalCount)
+        SetTimer(updateRunInfo, 15000)
 
     }
 
@@ -134,7 +148,7 @@ class MacroGui {
         }
     }
 
-    static WritePSLink() {
+    static savePSLink() {
         reg1 := "https:\/\/www\.roblox\.com(\/[a-z]{2})?\/games\/\d+\/[a-zA-Z0-9-]+(\?privateServerLinkCode=\d+)?"
         reg2 := "https://www\.roblox\.com/share\?code=fa([0-9]+([A-Za-z]+[0-9]+)+)[A-Za-z]+&type=Server"
         if !RegExMatch(this.ui["psLink"].Text, reg1) && !RegExMatch(this.ui["psLink"].Text, reg2) {

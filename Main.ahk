@@ -5,5 +5,6 @@ CoordMode('Mouse', 'Window')
 CoordMode('Pixel', 'Window')
 SendMode('Input')
 
-#Include lib\modules\Gui.ahk
 #Include lib\modules\Methods.ahk
+#Include lib\modules\Gui.ahk
+#Include lib\modules\Macro.ahk
