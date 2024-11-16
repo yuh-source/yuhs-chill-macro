@@ -77,6 +77,10 @@ class MacroGui {
         global usePriv := this.ui.AddCheckbox("vprivToggle c0xFFFFFF x825 y345 Checked","Use Private Server")
         this.ui.AddButton("vsaveLink x1092 y340", "Save Private Server Link").OnEvent("Click", (*) => FileMethods.Write(A_ScriptDir "\Settings\PSLink.txt", this.ui["psLink"].Text))
         this.ui.AddEdit("vpslink x825 y370 w400 r1", FileMethods.Read(A_ScriptDir "\Settings\PSLink.txt"))
+
+        this.ui.AddTitleGroupBox("0xc300ff", 815, 415, "Process Log", 225, 150)
+        this.ui.SetFont("s11")
+        this.ui.AddText("vprocess c0xFFFFFF x830 y438 w180 r7", "")
     }
 
     static Lock(ctrl) {
