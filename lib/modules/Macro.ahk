@@ -4,6 +4,17 @@ class Macro {
     static loopCount := 0
     static chalCount := 0
     static startTime := A_Now
+
+    static Join() {
+        if LevelUI.Lobby() {
+            MacroGui.addProcess("Attatching to Roblox")
+            Roblox.Focus()
+            WinGetPos(&X, &Y,,, MacroGui.ui)
+            WinMove(X - 8, Y + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
+        } else {
+            Roblox.Join()
+        }
+    }
 }
 
 class Paragon {

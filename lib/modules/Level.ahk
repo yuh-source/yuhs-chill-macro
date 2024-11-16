@@ -49,6 +49,20 @@ Class LevelUI {
         Utils.wClick("Left", 580, 160)
         Sleep(500)
     }
+
+    static Lobby() {
+        if WinExist("ahk_exe RobloxPlayerBeta.exe") {
+            if Utils.ImageSearchLoop(Images.level.returnToLobby, 555, 440, 690, 470, 500, 2) {
+                MacroGui.addProcess("Found Return To Lobby")
+                Utils.wClick("Left", 620, 460)
+            } else if Utils.ImageSearchLoop(Images.level.settings, 15, 595, 40, 625, 500, 2) {
+                MacroGui.addProcess("Found Settings Button")
+                this.MiscSettings("Lobby")
+            }
+            return true
+        }
+        return false
+    }
 }
 
 Class Setup {
