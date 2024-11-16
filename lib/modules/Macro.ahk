@@ -3,10 +3,78 @@
 class Macro {
     static loopCount := 0
     static chalCount := 0
-    static statTime := A_Now
+    static startTime := A_Now
 }
 
 class Lobby {
+    static Level() {
+        Utils.wClick("Left", 100, 290)
+        sleep(1000)
+    
+        SendInput("{w down}{d Down}")
+    
+        if !Utils.ImageSearchLoop(Images.lobby.stages, 100, 150, 250, 250, 1000, 30) {
+            SendInput("{w up}{d up}")
+            return this.Level()
+        }
+        SendInput("{w up}{d up}")
+        return
+    }
+
+    static Raid() {
+        this.AreaMenuTP("Raids")
+        Sleep(1000)
+    
+        SendInput("{w down}")
+        Sleep(1700)
+        SendInput("{d Down}")
+    
+        if !Utils.ImageSearchLoop(Images.lobby.stages, 100, 150, 250, 250, 1000, 30) {
+            SendInput("{w up}{d up}")
+            return this.Raid()
+        }
+        SendInput("{w up}{d up}")
+        return
+    }
+
+    static Boss() {
+        this.AreaMenuTP("Raids")
+        Sleep(1000)
+    
+        SendInput("{s down}{d down}")
+        Sleep(1200)
+        SendInput("{s up}{d up}")
+    
+        SendInput("{e}")
+    }
+
+    static Challenge() {
+        this.AreaMenuTP("Challenges")
+        Sleep(1000)
+    
+        SendInput("{w down}")
+        Sleep(1500)
+        SendInput("{Space down}")
+        Sleep(50)
+        SendInput("{Space up}")
+        Sleep(4000)
+        SendInput("{w up}")
+        SendInput("{d down}{s down}")
+        Sleep(3000)
+    
+        for path, name in MacroGui.stageArrays {
+            if Utils.ImageSearchLoop(%"Images.lobby.challenges." name%, 490, 150, 620, 220, 500, 2) {
+                MacroGui.addProcess("Found " name)
+                SendInput("{d up}{s up}")
+                return name
+            }
+        }
+    
+        Utils.wClick("Left", 710, 470)
+        SendInput("{d up}{s up}")
+        return ; FullMacro()
+    }
+
     static AreaMenuTP(area) {
         static areaCoords := {
             Challenges: [375, 300],
