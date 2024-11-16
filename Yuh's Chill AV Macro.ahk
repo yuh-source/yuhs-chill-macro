@@ -72,3 +72,31 @@ FullMacro() {
     }
     return
 }
+
+; class test {
+
+;     __Init() {
+;         this.testvar := 0
+;     }
+
+;     static assignvar() {
+;         SetTimer(capturePID, -1)
+;         this.testreturn(&testvar)
+
+;         capturePID(*) {
+;             this.testvar := testvar
+;         }
+;     }
+
+;     static testreturn(&testvar) {
+;         testvar := 2
+;     }
+    
+;     static readvar() {
+;         MsgBox(this.testvar)
+;     }
+; }
+
+; test.assignvar()
+; Sleep(10)
+; test.readvar()

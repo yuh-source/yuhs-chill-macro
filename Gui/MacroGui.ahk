@@ -13,9 +13,8 @@ ui.BackColor := "0x2f2f2f"
 bgPic := ui.AddPic("x800 y36 w450 h600 0x4000000", A_ScriptDir "\Images\UI\him.jpg") ; bg image
 WinSetTransparent("30",  bgPic)
 
-closeButton := ui.AddPic("x1220 y3", A_ScriptDir "\Images\UI\Exit Button.png") ; close button image
+closeButton := ui.AddPic("x1220 y3", A_ScriptDir "\Images\UI\Exit Button.png").OnEvent("Click", (*) => ExitGui()) ; close button image
 WinSetTransparent("255", closeButton)
-closeButton.OnEvent("Click", (*) => ExitGui())
 
 minimiseButton := ui.AddPic("x1177 y3", A_ScriptDir "\Images\UI\Minimise Button.png")
 WinSetTransparent("255", minimiseButton)

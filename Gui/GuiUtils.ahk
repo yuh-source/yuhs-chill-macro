@@ -1,22 +1,10 @@
 #Requires AutoHotkey v2.0
 
 WM_MOVE(wParam, lParam, msg, hwnd) {
+    if !WinExist("ahk_exe RobloxPlayerBeta.exe") || GuiFromHwnd(hwnd).Title != "Yuh's Chill AV Macro"
+        return
     SetWinDelay(-1)
-    local X := lParam & 0xFFFF
-    local Y := lParam >> 16
-    GuiObject := GuiFromHwnd(hwnd)
-
-    try {
-        title := GuiObject.Title
-    } catch {
-        title := ""
-    }
-
-    if WinExist("ahk_exe RobloxPlayerBeta.exe") and title = "Yuh's Chill AV Macro" {
-        WinMove(X-9, Y+5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
-    }
-    ; WinRedraw(thisGui)
-    ; ToolTip("moved " GuiObject.Title " to X: " X " Y: " Y)
+    WinMove(lParam & 0xFFFF - 9, (lParam >> 16) + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
 }
 
 WM_LBUTTONDOWN(wParam, lParam, msg, hwnd) {
@@ -25,46 +13,9 @@ WM_LBUTTONDOWN(wParam, lParam, msg, hwnd) {
     }
 }
 
-; WM_MOUSEMOVE(wParam, lParam, msg, hwnd) {
-;     static X, Y, GuiControl, prevControl
-;     MouseGetPos(,,, &guiControl)
-
-;     text := ""
-;     prevControl := ""
-;     if guiControl = "Button3" {
-;         text := "testing"
-;     }
-;     else if guiControl = "Button2" {
-;         text := "uhhh"
-;     }
-;     else if guiControl = "Button4" {
-;         text := "hmmmmm"
-;     }
-
-;     if text != "" and GuiControl != prevControl{
-;         ControlGetPos(&X, &Y,,, GuiControl)
-;         SetTimer(CreateToolTip, 500)
-;         prevControl := GuiControl
-;     }
-
-;     CreateToolTip() {
-;         SetTimer , 0
-;         ToolTip(text, X, Y)
-;         SetTimer(RemoveToolTip, 2000)
-;         isToolTip := true ; :cryingcausemycodewontwork:
-;     }
-;     RemoveToolTip() {
-;         SetTimer , 0
-;         ToolTip()
-;     }
-; }
-
 OnMessage(0x0003, WM_MOVE) ; make roblox window follow
 
 OnMessage(0x201, WM_LBUTTONDOWN) ; allow window dragging by clicking anywhere
-
-; OnMessage(0x200, WM_MOUSEMOVE) ; trying to add tooltips when hovering checkboxes (NOT WORKING)
-
 
 ExitGui(reloadScript := false) {
     KillTinyTask()
@@ -114,11 +65,10 @@ changeLock(*) {
 
 AltStageActArrays(currentStage) {
     ChangeDDL(userStage, stageArrays, legendStageToggle.Value)
-    for index, stage in stageArrays[legendStageToggle.Value + 1] {
-        if currentStage = stage or currentStage = "ShibuyaStation" or currentStage = "ShibuyaAftermath" {
-            userStage.Choose(index)
-        }
-    }
+    for i, stage in stageArrays[legendStageToggle.Value + 1]
+        if currentStage = stage || currentStage ~= "Shibuya(Station|Aftermath)"
+            userStage.Choose(i)
+    ChangeDDL(userAct, actArrays, legendStageToggle.Value)
 }
 
 ChangeDDL(GuiControl, uiArrays, toggleVar := 0) {
@@ -209,8 +159,8 @@ WritePsLink(*) {
     }
 }
 
-InsertText(GuiControl, text) {
-    processText.Text := text "`n" processText.Text 
+InsertText(ctrl, text) {
+    ctrl.Value .= text "`n"
 }
 
 JoinDiscord(*) {

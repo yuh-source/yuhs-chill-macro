@@ -114,15 +114,17 @@ AreaMenuTP(area) {
     static areaCoords := {
         Challenges: [375, 300],
         Evolve: [540, 300],
-        Raids: [540, 370]
+        Raids: [540, 367]
     }
 
     TpMouse("Left", 40, 350)
     Sleep(150)
     InsertText(processText, "Teleporting to " area)
 
-    if coords := areaCoords.HasOwnProp(area) ? areaCoords[area] : false {
+    if (areaCoords.HasOwnProp(area)) {
+        coords := areaCoords.%area%
         TpMouse("Left", coords[1], coords[2])
+        Sleep(150)
         TpMouse("Left", 570, 230, 150)
     }
     return
