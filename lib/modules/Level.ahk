@@ -64,6 +64,27 @@ Class LevelUI {
         }
         return false
     }
+
+    static Rewards(rewardAmount := 10) {
+        loop 80 {
+            Sleep(2000)
+            if !Utils.ImageSearchLoop(Images.level.settings, 15, 595, 40, 625, 500, 2) {
+                MacroGui.addProcess("Found Rewards")
+                break
+            }
+        }
+    
+        MacroGui.addProcess("Clicking Rewards")
+        loop rewardAmount {
+            Utils.wClick("Left", 400, 340)
+            Sleep(700)
+        }
+    
+        if Utils.ImageSearchLoop(Images.level.returnToLobby, 555, 440, 690, 470, 500, 4) {
+            return true
+        }
+        return false
+    }
 }
 
 Class Setup {

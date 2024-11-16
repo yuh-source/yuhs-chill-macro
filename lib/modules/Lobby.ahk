@@ -1,6 +1,76 @@
 #Requires AutoHotkey v2.0 
 
 class Lobby {
+    static prevChallengeTime := A_Now
+    static inChallenge := false
+    static currentStage := ""
+    static currentAct := ""
+
+    static JoinLevel() {
+        if MacroGui.ui["craftToggle"].Value && MacroGui.ui["legToggle"].Value {
+            this.Crystals()
+        }
+    
+        if DateDiff(this.prevChallengeTime, A_Now, 'M') <= -30  && MacroGui.ui["chalToggle"].Value {
+            this.PreChal()
+
+            if !Macro.initLoop() {
+                this.PostChal()
+            }
+            return false
+        }
+    
+        if MacroGui.ui["bossToggle"].Value {
+            MacroGui.addProcess("Entering Boss Rush")
+            this.Boss()
+            return true
+        }
+    
+        if MacroGui.ui["raidToggle"].Value {
+            MacroGui.addProcess("Entering Raid")
+            this.Raid()
+            LobbyUI.SelectAct(MacroGui.ui["userRaidAct"].Value)
+            return true
+        }
+        MacroGui.addProcess("Entering Teleporter")
+        this.Level()
+        MacroGui.addProcess("Stage: " MacroGui.ui["userStage"].Text)
+        LobbyUI.SelectStage(MacroGui.ui["userStage"].Text)
+        MacroGui.addProcess("Act: " MacroGui.ui["userAct"].Value)
+        LobbyUI.SelectAct(MacroGui.ui["userAct"].Value)
+        return true
+    }
+
+    static PreChal() {
+        MacroGui.addProcess("Entering Challenge")
+        this.prevChallengeTime := A_Now
+        this.currentStage := MacroGui.ui["userStage"].Text
+        this.currentAct := MacroGui.ui["userAct"].Value
+
+        if MacroGui.ui["legToggle"].Value && !StrMethods.InArr("ShibuyaStation", ControlGetItems(MacroGui.ui["userStage"])) {
+            MacroGui.ui["userStage"].Add("ShibuyaStation")
+        }
+        MacroGui.ui["userStage"].Text := this.Challenge()
+        MacroGui.ui["userAct"].Value := 0
+
+        Sleep(150)
+        Utils.wClick("Left", 560, 470)
+        MacroGui.addProcess(MacroGui.ui["userStage"].Text " Challenge")
+
+        this.inChallenge := true
+    }
+
+    static PostChal() {
+        MacroGui.ui["userStage"].Text := this.currentStage
+        MacroGui.ui["userAct"].Value := this.currentAct
+        if MacroGui.ui["legToggle"].Value && StrMethods.InArr("ShibuyaStation", ControlGetItems(MacroGui.ui["userStage"])) && this.inChallenge = true {
+            MacroGui.ui["userStage"].Delete()
+            MacroGui.ui["userStage"].Add(MacroGui.stageArrays[2])
+        }
+        this.inChallenge := false
+        Macro.chalCount++
+    }
+
     static Level() {
         Utils.wClick("Left", 100, 290)
         sleep(1000)
@@ -40,6 +110,8 @@ class Lobby {
         SendInput("{s up}{d up}")
     
         SendInput("{e}")
+        Sleep(200)
+        Utils.wClick("Left", 210, 430)
     }
 
     static Challenge() {
@@ -89,6 +161,7 @@ class Lobby {
     }
 
     static Crystals() {
+        MacroGui.addProcess("Crafting Crystals")
         Roblox.Focus()
         this.AreaMenuTP("Evolve")
         SendInput("{w down}{d down}")

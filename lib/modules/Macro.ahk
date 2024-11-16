@@ -15,6 +15,81 @@ class Macro {
             Roblox.Join()
         }
     }
+
+    static initLoop() {
+        if !Setup.Run(true) {
+            return false
+        }
+        while this.Loop() {
+            this.loopCount++
+        }
+        return false
+    }
+
+    static Loop() {
+        MacroGui.addProcess(MacroGui.ui["userStage"].Text MacroGui.ui["userAct"].Value)
+        stagePath := MacroGui.ui["raidToggle"].value ? "\TinyTask\Raid" MacroGui.ui["userRaidAct"].Value ".exe" : "\TinyTask\" MacroGui.ui["userStage"].Text MacroGui.ui["userAct"].Value ".exe"
+        standardPath := MacroGui.ui["raidToggle"].value ? "\TinyTask\RaidStandard.exe" : "\TinyTask\" MacroGui.ui["userStage"].Text "Standard.exe"
+        useTinyTask := TTaskMethods.Ctrl(A_ScriptDir (FileExist(A_ScriptDir stagePath) ? stagePath : standardPath))
+
+        if useTinyTask {
+            MacroGui.addProcess("Finished " MacroGui.ui["userStage"].text MacroGui.ui["userAct"].Value ".exe")
+        } else {
+            try {
+                stage := MacroGui.ui["raidToggle"].Value ? "Raid" : MacroGui.ui["userStage"].Text
+                act := MacroGui.ui["raidToggle"].Value ? MacroGui.ui["userRaidAct"].Value : MacroGui.ui["userAct"].Value
+                if RunActFunc(stage, act) {
+                    MacroGui.addProcess(stage act " Done")
+                } else {
+                    MacroGui.addProcess(stage " Standard Done")
+                }
+            } catch {
+                MacroGui.addProcess("Unable To Find Stage/Act")
+            }
+        }
+
+        RunActFunc(stage, act) {
+            try {
+                %stage "Act" act%()
+                return true
+            } catch {
+                %stage "Standard"%()
+                return false
+            }
+        }
+
+        if MacroGui.ui["userAct"].Value != 7 {
+            if !LevelUI.Rewards() {
+                return false
+            }
+        }
+
+        if !Utils.ImageSearchLoop(Images.level.returnToLobby, 555, 440, 690, 470, 2000, 120) {
+            MacroGui.addProcess("Cant Return To Lobby")
+            return false
+        }
+        MacroGui.addProcess("Macro Ended")
+
+        if webhookFile.Read() != "" {
+            WindowCaptureToWebhook()
+        }
+        
+        if (DateDiff(Lobby.prevChallengeTime, A_Now, 'M') <= -30 && MacroGui.ui["chalToggle"].Value) 
+            || (MacroGui.ui["craftToggle"].Value && this.loopCount >= 25) 
+            || this.loopCount >= 25
+            || Lobby.inChallenge {
+            LevelUI.Lobby()
+            if !Utils.ImageSearchLoop(Images.lobby.play, 60, 250, 125, 325, 1000, 60)
+                MacroGui.addProcess("Cant Find Start")
+            return false
+        }
+        
+        if MacroGui.ui["userAct"].Value = 8 {
+            LevelUI.Start(true, false), Paragon.Pick(false)
+            return LevelUI.Start()
+        }
+        return LevelUI.Start(true)
+    }
 }
 
 class Paragon {

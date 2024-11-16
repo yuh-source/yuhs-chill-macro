@@ -65,7 +65,7 @@ class TTaskMethods {
                 return false
             }
         }
-        try {
+        if PID != "" {
             ProcessClose(PID)
         }
     }

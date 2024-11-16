@@ -77,7 +77,7 @@ class MacroGui {
 
         this.ui.AddTitleGroupBox("0xff4c30", 815, 250, "Raid Options", 205, 55) ; Raid Box
         this.ui.AddCheckbox("vraidToggle c0xFFFFFF x825 y275", "Select For Raid").OnEvent("Click", (*) => MsgBox("Raid is heavily broken rn, dont use"))
-        this.ui.AddDDL("x930 y270 w50 r4", this.raidArray)
+        this.ui.AddDDL("vuserRaidAct x930 y270 w50 r4", this.raidArray)
 
         this.ui.AddTitleGroupBox("0xff7b00", 1035, 250, "Boss Rush", 200, 55)
         this.ui.AddCheckbox("vbossToggle c0xFFFFFF x1045 y275", "Select For Boss Rush")
