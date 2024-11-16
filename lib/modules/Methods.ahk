@@ -104,3 +104,32 @@ class Images {
         return mp
     }
 }
+
+class Utils {
+    static wClick(button, x, y, clickDelay := 0) {
+        MouseMove(x, y)
+        MouseMove(1, 0, , "R")
+        Sleep(clickDelay)
+        MouseClick("Left", -1, 0, , , , "R")
+        Sleep(50)
+    }
+
+    static DllSleep(lPeriod) {
+        if (hTimer := DllCall("CreateWaitableTimerExW", "ptr", 0, "ptr", 0, "uint", 3, "uint", 0x1F0003, "uptr"))
+            && DllCall("SetWaitableTimer", "uptr", hTimer, "uint64*", lPeriod * -10000, "int", 0, "ptr", 0, "ptr", 0, "int", 0)
+            DllCall("WaitForSingleObject", "uptr", hTimer, "UInt", 0xFFFFFFFF), DllCall('CloseHandle', "uptr", hTimer)
+    }
+
+    static ImageSearchLoop( &FoundX, &FoundY, X1, Y1, X2, Y2, imagePath, searchDelay := 1000, maxRetryCount := 15) {
+        loop maxRetryCount + 1 {
+            if !FocusRoblox()
+                return false
+                
+            if ImageSearch(&FoundX, &FoundY, X1, Y1, X2, Y2, imagePath)
+                return true
+                
+            Sleep(searchDelay)
+        }
+        return false
+    }
+}
