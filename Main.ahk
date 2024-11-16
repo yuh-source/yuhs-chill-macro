@@ -9,6 +9,7 @@ SendMode('Input')
 #Include lib\modules\Gui.ahk
 #Include lib\modules\Lobby.ahk
 #Include lib\modules\Macro.ahk
+#Include lib\modules\Level.ahk
 
 MacroGui.Show()
 
