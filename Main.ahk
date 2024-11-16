@@ -8,6 +8,7 @@ SendMode('Input')
 #Include lib\modules\Methods.ahk
 #Include lib\modules\Gui.ahk
 #Include lib\modules\Lobby.ahk
+#Include lib\modules\Macro.ahk
 
 MacroGui.Show()
 

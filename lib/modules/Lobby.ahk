@@ -1,11 +1,5 @@
 #Requires AutoHotkey v2.0 
 
-class Macro {
-    static loopCount := 0
-    static chalCount := 0
-    static startTime := A_Now
-}
-
 class Lobby {
     static Level() {
         Utils.wClick("Left", 100, 290)
