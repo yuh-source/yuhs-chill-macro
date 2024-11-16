@@ -97,6 +97,14 @@ class MacroGui {
         this.ui.AddText("vdisplayChals c0xFFFFFF x1065 y498 w155", "Challenges Done: " Macro.chalCount)
         SetTimer(updateRunInfo, 15000)
 
+        this.ui.AddButton("vstartButton x815 y585 w100 h30", "Start Macro") ; .OnEvent("Click", (*) => FullMacro())
+        this.ui.AddButton("vstopButton x935 y585 w100 h30", "Stop Macro").OnEvent("Click", (*) => GuiMethods.Close(true))
+
+        this.ui.AddButton("vwebhbutton x1055 y585 w100 h30", "Webhook").OnEvent("Click", this.WebHook)
+
+        this.ui.AddPic("vdImage x1180 y570", A_ScriptDir "\lib\resources\UI\discord.png").OnEvent("Click", (*) => Run("https://discord.gg/aZZVgMrXCS"))
+        WinSetTransparent("255", this.ui["dImage"])
+
     }
 
     static Lock(ctrl) {
@@ -157,6 +165,25 @@ class MacroGui {
         }
         FileMethods.Write(A_ScriptDir "\Settings\PSLink.txt", this.ui["psLink"].Text)
         
+    }
+
+    static WebHook(*) {
+        webhGUI := GuiMethods("+AlwaysOnTop", "Choose Your Paragon Priority")
+        webhGUI.BackColor := "0x2f2f2f"
+        webhGUI.Show("w300 h100")
+
+        webhGUI.SetFont("s11")
+        webhGUI.AddText("x10 y10 c0xFFFFFF", "Discord Webhook URL:")
+        webhGUI.AddEdit("vwebhURL x10 y30 w280 r1", FileMethods.Read(A_ScriptDir "\Settings\DiscordWebhook.txt"))
+        webhGUI.AddButton("vsavewebhButton x10 y60", "Save Webhook").OnEvent("Click", saveWebHURL)
+
+        saveWebHURL(*) {
+            if webhGui["webhURL"].Text ~= "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$" 
+                FileMethods.Write(A_ScriptDir "\Settings\DiscordWebhook.txt", webhGui["webhURL"].Text)
+                webhGUI.Destroy()
+                return
+            MsgBox("Invalid Webhook Url")
+        }
     }
 }
 
