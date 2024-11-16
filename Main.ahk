@@ -13,4 +13,4 @@ MacroGui.Show()
 
 MacroGui.addProcess("started")
 
-MsgBox(Images.level.paragon["drowsy"])
+MsgBox(Images.level.paragon["regen"])
