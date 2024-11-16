@@ -66,6 +66,35 @@ Class LevelUI {
 }
 
 Class Setup {
+    static Run(startButtonCheck := false) {
+
+        if MacroGui.ui["userAct"].Value = 8 {
+            if !Paragon.Pick() {
+                return false
+            }
+        }
+    
+        if startButtonCheck {
+            if !Utils.ImageSearchLoop(Images.level.voteStart, 370, 115, 440, 130, , 30) {
+                MacroGui.addProcess("Cant Find Vote Start")
+                return false
+            }
+        }
+    
+        if MacroGui.ui["raidToggle"].Value {
+            MacroGui.addProcess("Raid Setup")
+            this.Raid()
+            return true
+        } 
+        try {
+            MacroGui.addProcess(MacroGui.ui["userstage"].text " Setup")
+            %"this." MacroGui.ui["userstage"].text%()
+            return true
+        }
+        MacroGui.addProcess("No Valid Macro Setup")
+        return false
+    }
+
     static LookDown() {
         MouseGetPos(&x, &y)
         SendInput("{Click " x " " y " Right}")
