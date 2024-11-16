@@ -1,7 +1,8 @@
 #Requires AutoHotkey v2.0 
 
 Class LevelUI {
-    static Start(checkLobby := false) {
+
+    static Start(checkLobby := false, clickStart := true) {
         if checkLobby {
             if !Utils.ImageSearchLoop(Images.level.returnToLobby, 555, 440, 690, 470, 500, 20) {
                 MacroGui.addProcess("Unable To Return To Lobby")
@@ -27,9 +28,9 @@ Class LevelUI {
             return false
         }
         MacroGui.addProcess("Found Vote Start")
-        ; if clickstart { ###########################################################
+        if clickstart {
             Utils.wClick("Left", 375, 155)
-        ; }
+        }
         return true
     }
 
