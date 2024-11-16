@@ -13,7 +13,7 @@ class GuiMethods extends Gui {
         Sleep(500)
     }
 
-    static ChangeDDl(ctrl, arrays, toggle := 0) { ; ChangeDDl(useract, MacroGui.actArrays, legendStageToggle.Value)
+    static ChangeDDl(ctrl, arrays, toggle := 0) {
         cIndex := ctrl.Value
         ctrl.Delete(), ctrl.Add(arrays[toggle + 1])
         (cIndex > arrays[toggle + 1].Length) ? ctrl.Choose(1) : ctrl.Choose(cIndex)
@@ -74,24 +74,24 @@ class TTaskMethods {
 
 class Images {
     static lobby := {
-        play: "*75 " A_ScriptDir "\Images\Lobby\Play Button.png",
-        stages: "*100 " A_ScriptDir "\Images\Lobby\Stages.png",
-        notEnoughItems: "*100 " A_ScriptDir "\Images\Lobby\Not Enough Items.png",
+        play: "*75 " A_ScriptDir "\lib\resources\Lobby\Play Button.png",
+        stages: "*100 " A_ScriptDir "\lib\resources\Lobby\Stages.png",
+        notEnoughItems: "*100 " A_ScriptDir "\lib\resources\Lobby\Not Enough Items.png",
         
         challenges: {
-            planetNamek: "*100 " A_ScriptDir "\Images\Lobby\PlanetNamek Challenge Banner.png",
-            sandVillage: "*100 " A_ScriptDir "\Images\Lobby\SandVillage Challenge Banner.png",
-            doubleDungeon: "*100 " A_ScriptDir "\Images\Lobby\DoubleDungeon Challenge Banner.png",
-            shibuyaStation: "*100 " A_ScriptDir "\Images\Lobby\ShibuyaStation Challenge Banner.png"
+            planetNamek: "*100 " A_ScriptDir "\lib\resources\Lobby\PlanetNamek Challenge Banner.png",
+            sandVillage: "*100 " A_ScriptDir "\lib\resources\Lobby\SandVillage Challenge Banner.png",
+            doubleDungeon: "*100 " A_ScriptDir "\lib\resources\Lobby\DoubleDungeon Challenge Banner.png",
+            shibuyaStation: "*100 " A_ScriptDir "\lib\resources\Lobby\ShibuyaStation Challenge Banner.png"
         }
     }
 
     static level := {
-        voteStart: "*75 " A_ScriptDir "\Images\Level Elements\Vote Start.png",
-        returnToLobby: "*100 " A_ScriptDir "\Images\Level Elements\Return To Lobby Button.png",
-        gemsReward: "*75 " A_ScriptDir "\Images\Level Elements\Gems Reward.png",
-        stageInfo: "*50 " A_ScriptDir "\Images\Level Elements\Stage Info.png",
-        settings: "*160 " A_ScriptDir "\Images\Level Elements\Settings Icon.png",
+        voteStart: "*75 " A_ScriptDir "\lib\resources\Level\Vote Start.png",
+        returnToLobby: "*100 " A_ScriptDir "\lib\resources\Level\Return To Lobby Button.png",
+        gemsReward: "*75 " A_ScriptDir "\lib\resources\Level\Gems Reward.png",
+        stageInfo: "*50 " A_ScriptDir "\lib\resources\Level\Stage Info.png",
+        settings: "*160 " A_ScriptDir "\lib\resources\Level\Settings Icon.png",
 
         paragon: this.InitParagonMap()
     }
@@ -99,7 +99,7 @@ class Images {
     static InitParagonMap() {
         mp := Map()
         Loop MacroGui.modArray.Length {
-            mp[MacroGui.modArray[A_Index]] := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\" MacroGui.modArray[A_Index] ".png"
+            mp[MacroGui.modArray[A_Index]] := "*25 " A_ScriptDir "\lib\resources\Level\Paragon\" MacroGui.modArray[A_Index] ".png"
         }
         return mp
     }
