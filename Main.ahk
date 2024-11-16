@@ -12,7 +12,3 @@ SendMode('Input')
 #Include lib\modules\Level.ahk
 
 MacroGui.Show()
-
-MacroGui.addProcess("started")
-
-MsgBox(Images.level.paragon["regen"])

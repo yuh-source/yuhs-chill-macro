@@ -19,8 +19,10 @@ OnMessage(0x0003, WM_MOVE)
 
 updateRunInfo() {
     MacroGui.ui["displayLoops"].Text := "Macro Loops: " Macro.loopCount
-    MacroGui.ui["timeElapsed"].Text := "Macro Runtime: " (A_Now - Macro.startTime) // 60000 " Mins"
-    MacroGui.ui["rph"].Text := "Runs Per Hour: " (Macro.loopCount / ((A_Now - Macro.startTime) // 3600000))
+    timeDiffMins := DateDiff(A_Now, Macro.startTime, "minutes") 
+    MacroGui.ui["timeElapsed"].Text := "Macro Runtime: " timeDiffMins " Mins"
+    timeDiffHours := DateDiff(A_Now, Macro.startTime, "hours")
+    MacroGui.ui["rph"].Text := "Runs Per Hour: " (timeDiffHours > 0 ? Round(Macro.loopCount / timeDiffHours) : 0)
     MacroGui.ui["displayChals"].Text := "Challenges Done: " Macro.chalCount
 }
 
