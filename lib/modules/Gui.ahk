@@ -107,6 +107,10 @@ class MacroGui {
 
     }
 
+    static addProcess(text) {
+        this.ui["process"].Value .= text "`n"
+    }
+
     static Lock(ctrl) {
         this.lockToggle *= -1
 
@@ -178,13 +182,12 @@ class MacroGui {
         webhGUI.AddButton("vsavewebhButton x10 y60", "Save Webhook").OnEvent("Click", saveWebHURL)
 
         saveWebHURL(*) {
-            if webhGui["webhURL"].Text ~= "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$" 
+            if webhGui["webhURL"].Text ~= "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$" {
                 FileMethods.Write(A_ScriptDir "\Settings\DiscordWebhook.txt", webhGui["webhURL"].Text)
                 webhGUI.Destroy()
                 return
+            }
             MsgBox("Invalid Webhook Url")
         }
     }
 }
-
-MacroGui.Show()

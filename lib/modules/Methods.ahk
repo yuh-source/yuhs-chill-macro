@@ -52,10 +52,6 @@ class StrMethods {
                 return true
         return false
     }
-
-    static InsertText(ctrl, text) {
-        ctrl.Value .= text "`n"
-    }
 }
 
 class TTaskMethods {
@@ -73,5 +69,38 @@ class TTaskMethods {
             ProcessClose(PID)
             return
         }
+    }
+}
+
+class Images {
+    static Lobby := {
+        Play: "*75 " A_ScriptDir "\Images\Lobby\Play Button.png",
+        Stages: "*100 " A_ScriptDir "\Images\Lobby\Stages.png",
+        NotEnoughItems: "*100 " A_ScriptDir "\Images\Lobby\Not Enough Items.png",
+        
+        Challenges: {
+            PlanetNamek: "*100 " A_ScriptDir "\Images\Lobby\PlanetNamek Challenge Banner.png",
+            SandVillage: "*100 " A_ScriptDir "\Images\Lobby\SandVillage Challenge Banner.png",
+            DoubleDungeon: "*100 " A_ScriptDir "\Images\Lobby\DoubleDungeon Challenge Banner.png",
+            ShibuyaStation: "*100 " A_ScriptDir "\Images\Lobby\ShibuyaStation Challenge Banner.png"
+        }
+    }
+
+    static LevelElements := {
+        VoteStart: "*75 " A_ScriptDir "\Images\Level Elements\Vote Start.png",
+        ReturnToLobby: "*100 " A_ScriptDir "\Images\Level Elements\Return To Lobby Button.png",
+        GemsReward: "*75 " A_ScriptDir "\Images\Level Elements\Gems Reward.png",
+        StageInfo: "*50 " A_ScriptDir "\Images\Level Elements\Stage Info.png",
+        Settings: "*160 " A_ScriptDir "\Images\Level Elements\Settings Icon.png",
+
+        Paragon: Images.InitParagonMap()
+    }
+
+    static InitParagonMap() {
+        mp := Map()
+        Loop MacroGui.modArray.Length {
+            mp[MacroGui.modArray[A_Index]] := "*25 " A_ScriptDir "\Images\Level Elements\Paragon\" MacroGui.modArray[A_Index] ".png"
+        }
+        return mp
     }
 }

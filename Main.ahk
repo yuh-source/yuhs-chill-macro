@@ -8,3 +8,9 @@ SendMode('Input')
 #Include lib\modules\Methods.ahk
 #Include lib\modules\Gui.ahk
 #Include lib\modules\Macro.ahk
+
+MacroGui.Show()
+
+MacroGui.addProcess("started")
+
+MsgBox(Images.LevelElements.Paragon["drowsy"])
