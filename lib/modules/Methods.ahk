@@ -119,7 +119,7 @@ class Utils {
             DllCall("WaitForSingleObject", "uptr", hTimer, "UInt", 0xFFFFFFFF), DllCall('CloseHandle', "uptr", hTimer)
     }
 
-    static ImageSearchLoop(X1, Y1, X2, Y2, imagePath, searchDelay := 1000, maxRetryCount := 15, &FoundX := 0, &FoundY := 0) {
+    static ImageSearchLoop(imagePath, X1, Y1, X2, Y2, searchDelay := 1000, maxRetryCount := 15, &FoundX := 0, &FoundY := 0) {
         loop maxRetryCount + 1 {
             if !Roblox.Focus()
                 return false
@@ -135,10 +135,15 @@ class Utils {
 
 class Roblox {
     static Focus() {
-        if !WinExist("ahk_exe RobloxPlayerBeta.exe")
-            return false
-        WinActivate("ahk_exe RobloxPlayerBeta.exe")
-        return true
+        loop 15 {
+            if WinExist("ahk_exe RobloxPlayerBeta.exe") {
+                WinActivate("ahk_exe RobloxPlayerBeta.exe")
+                return true
+            }
+            Sleep(1000)
+        }
+        MacroGui.addProcess("Cant Find Roblox")
+        return false
     }
 
     static Join() {

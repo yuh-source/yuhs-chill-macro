@@ -3,7 +3,7 @@
 
 $F1:: Main()
 
-$F4:: GuiMethods.Close(true)
+$F4:: GuiMethods.Close(false)
 
 $F3:: {
     Roblox.Focus()
@@ -30,6 +30,13 @@ SendMode('Input')
 
 #Include lib\webhook\DiscordWebhook.ahk
 
+#Include "Macros\PlanetNamek.ahk"
+#Include "Macros\SandVillage.ahk"
+#Include "Macros\DoubleDungeon.ahk"
+#Include "Macros\ShibuyaStation.ahk"
+#Include "Macros\ShibuyaAftermath.ahk"
+#Include "Macros\Raid.ahk"
+
 MacroGui.Show()
 
 Main() {
@@ -44,8 +51,9 @@ Main() {
         return Main()
     }
 
-    if !Macro.initLoop() && MacroGui.ui[""].Value {
+    if !Macro.initLoop() && MacroGui.ui["retryToggle"].Value {
         MacroGui.addProcess("Reloading Full Macro")
         return Main()
     }
 }
+

@@ -13,17 +13,7 @@ PlanetNamekAct7() {
     
     vegeta1.Upgrade(1)
 
-    if macroLoopCount = 1 {
-        if !ImageSearchLoop(namek10Path, 250, 50, 280, 67, 2000, 120) { ;120 retrys = 4 mins, wave 10 should start 3:30
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    } else {
-        if !ImageSearchLoop(namek10AltPath, 250, 95, 280, 113, 2000, 120) {
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    }
+    Sleep(60000)
 
     sasuke1 := Unit(2, 660, 420)
 
@@ -99,17 +89,7 @@ PlanetNamekAct8() {
 
     bean2 := Unit(6, 645, 250, 5, 0)
 
-	if macroLoopCount = 1 {
-        if !ImageSearchLoop(namek10Path, 250, 50, 280, 67, 1000, 120) {
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    } else {
-        if !ImageSearchLoop(namek10AltPath, 250, 95, 280, 113, 1000, 120) {
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    }
+	Sleep(60000)
 
     igris1 := Unit(1, 405, 230)
 
@@ -131,17 +111,7 @@ PlanetNamekStandard() {
 	Sleep(5000)
 	vegeta4 := Unit(3, 585, 385)
 
-	if macroLoopCount = 1 {
-        if !ImageSearchLoop(namek10Path, 250, 50, 280, 67, 1000, 120) {
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    } else {
-        if !ImageSearchLoop(namek10AltPath, 250, 95, 280, 113, 1000, 120) {
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    }
+    Sleep(60000)
 
 	vegeta1.upgrade(2)
 	vegeta2.Upgrade(2)
@@ -167,17 +137,7 @@ PlanetNamekAct0() {
     Sleep(20000)
     vegeta4 := Unit(3, 585, 385)
 
-    if macroLoopCount = 1 {
-        if !ImageSearchLoop(namek10Path, 250, 50, 280, 67, 1000, 120) {
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    } else {
-        if !ImageSearchLoop(namek10AltPath, 250, 95, 280, 113, 1000, 120) {
-            MsgBox("Could not detect wave 10", "Detect Wave Error", "T5")
-            return false
-        }
-    }
+    Sleep(60000)
 
     sasuke1 := Unit(2, 700, 300, 10, 0)
 

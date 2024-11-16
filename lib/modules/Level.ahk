@@ -98,7 +98,7 @@ Class Setup {
         }
     
         if startButtonCheck {
-            if !Utils.ImageSearchLoop(Images.level.voteStart, 370, 115, 440, 130, , 30) {
+            if !Utils.ImageSearchLoop(Images.level.voteStart, 370, 115, 440, 130, 1000, 30) {
                 MacroGui.addProcess("Cant Find Vote Start")
                 return false
             }
@@ -106,16 +106,92 @@ Class Setup {
     
         if MacroGui.ui["raidToggle"].Value {
             MacroGui.addProcess("Raid Setup")
-            this.Raid()
+            Raid()
             return true
         } 
         try {
             MacroGui.addProcess(MacroGui.ui["userstage"].text " Setup")
-            %"this." MacroGui.ui["userstage"].text%()
+            %MacroGui.ui["userstage"].text%()
             return true
         }
         MacroGui.addProcess("No Valid Macro Setup")
         return false
+
+        Raid() {
+            this.Standard()
+        
+            SendInput("{w down}")
+            Utils.DllSleep(300)
+            SendInput("{d down}")
+            Utils.DllSleep(550)
+            SendInput("{w up}{d up}")
+            Sleep(100)
+        
+            SendInput("{Right down}")
+            Utils.DllSleep(1470)
+            SendInput("{Right up}")
+            Sleep(100)
+        
+            this.LookDown()
+            return LevelUI.Start()
+        }
+        
+        PlanetNamek() {
+            this.Standard()
+            this.LookDown()
+            return LevelUI.Start()
+        }
+        
+        SandVillage() {
+            this.Standard()
+            this.LookDown()
+        
+            Sleep(150)
+            SendInput('{Left down}')
+            Utils.DllSleep(310)
+            SendInput('{Left up}')
+            return LevelUI.Start()
+        }
+        
+        DoubleDungeon() {
+            this.Standard()
+        
+            SendInput("{v}")
+            Sleep(250)
+            SendInput("{a down}")
+            Sleep(2000)
+            SendInput("{a up}")
+        
+            SendInput("{v}")
+            Sleep(250)
+            SendInput("{d Down}")
+            Sleep(400)
+            SendInput("{d up}")
+        
+        
+            SendInput('{Right down}')
+            Utils.DllSleep(750)
+            SendInput('{Right up}')
+            return LevelUI.Start()
+        }
+        
+        ShibuyaStation() {
+            this.Standard()
+            return LevelUI.Start()
+        }
+        
+        ShibuyaAftermath() {
+            this.Standard()
+        
+            SendInput("{a down}")
+            Sleep(800)
+            SendInput("{a up}")
+        
+            SendInput('{Left down}')
+            Utils.DllSleep(500)
+            SendInput('{Left up}')
+            return LevelUI.Start()
+        } 
     }
 
     static LookDown() {
@@ -136,81 +212,5 @@ Class Setup {
             Sleep(50)
         }
         Sleep(100)
-    }
-    
-    static Raid() {
-        this.Standard()
-    
-        SendInput("{w down}")
-        Utils.DllSleep(300)
-        SendInput("{d down}")
-        Utils.DllSleep(550)
-        SendInput("{w up}{d up}")
-        Sleep(100)
-    
-        SendInput("{Right down}")
-        Utils.DllSleep(1470)
-        SendInput("{Right up}")
-        Sleep(100)
-    
-        this.LookDown()
-        return LevelUI.Start()
-    }
-    
-    static PlanetNamek() {
-        this.Standard()
-        this.LookDown()
-        return LevelUI.Start()
-    }
-    
-    static SandVillage() {
-        this.Standard()
-        this.LookDown()
-    
-        Sleep(150)
-        SendInput('{Left down}')
-        Utils.DllSleep(310)
-        SendInput('{Left up}')
-        return LevelUI.Start()
-    }
-    
-    static DoubleDungeon() {
-        this.Standard()
-    
-        SendInput("{v}")
-        Sleep(250)
-        SendInput("{a down}")
-        Sleep(2000)
-        SendInput("{a up}")
-    
-        SendInput("{v}")
-        Sleep(250)
-        SendInput("{d Down}")
-        Sleep(400)
-        SendInput("{d up}")
-    
-    
-        SendInput('{Right down}')
-        Utils.DllSleep(750)
-        SendInput('{Right up}')
-        return LevelUI.Start()
-    }
-    
-    static ShibuyaStation() {
-        this.Standard()
-        return LevelUI.Start()
-    }
-    
-    static ShibuyaAftermath() {
-        this.Standard()
-    
-        SendInput("{a down}")
-        Sleep(800)
-        SendInput("{a up}")
-    
-        SendInput('{Left down}')
-        Utils.DllSleep(500)
-        SendInput('{Left up}')
-        return LevelUI.Start()
-    }  
+    } 
 }

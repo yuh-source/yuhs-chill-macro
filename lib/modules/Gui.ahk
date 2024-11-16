@@ -99,8 +99,8 @@ class MacroGui {
         this.ui.AddText("vdisplayChals c0xFFFFFF x1065 y498 w155", "Challenges Done: " Macro.chalCount)
         SetTimer(updateRunInfo, 15000)
 
-        this.ui.AddButton("vstartButton x815 y585 w100 h30", "Start Macro") ; .OnEvent("Click", (*) => FullMacro())
-        this.ui.AddButton("vstopButton x935 y585 w100 h30", "Stop Macro").OnEvent("Click", (*) => GuiMethods.Close(true))
+        this.ui.AddButton("vstartButton x815 y585 w100 h30", "Start Macro").OnEvent("Click", (*) => Main())
+        this.ui.AddButton("vstopButton x935 y585 w100 h30", "Stop Macro").OnEvent("Click", (*) => GuiMethods.Close(false))
 
         this.ui.AddButton("vwebhbutton x1055 y585 w100 h30", "Webhook").OnEvent("Click", this.WebHook)
 
@@ -110,7 +110,7 @@ class MacroGui {
     }
 
     static addProcess(text) {
-        this.ui["process"].Value .= text "`n"
+        this.ui["process"].Value = text "`n" this.ui["process"].Value
     }
 
     static Lock(ctrl) {
