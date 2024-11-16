@@ -130,3 +130,47 @@ class Paragon {
         }
     }
 }
+
+class Unit {
+    __New(unitSlot, x, y, xOffset := 2, yOffset := -5) {
+        this.unitSlot := unitSlot
+        this.x := x
+        this.y := y
+        this.xOffset := xOffset
+        this.yOffset := yOffset
+        this.level := 0
+
+        this.Place()
+    }
+
+    Properties() {
+        MsgBox("unit slot " this.unitSlot "`n (" this.x ", " this.y ")`n current level: " this.level)
+    }
+
+    Place() {
+        MacroGui.addProcess("Placing Unit " this.unitSlot " at (" this.x ", " this.y ")")
+        Roblox.Focus()
+        SendInput("{" this.unitSlot "}")
+        Utils.wClick("left", this.x, this.y, 200)
+    }
+
+    Upgrade(upgradeAmount) {
+        MacroGui.addProcess("Unit" this.unitSlot " (" this.x ", " this.y ") Level " this.level " -> " this.level + upgradeAmount)
+        Roblox.Focus()
+        Utils.wClick("left", this.x+this.xOffset, this.y+this.yOffset)
+
+        loop upgradeAmount {
+            SendInput("{t}")
+            Sleep(200)
+            this.level++
+        }
+    }
+
+    Sell() {
+        MacroGui.addProcess("Selling Unit (" this.x ", " this.y ")")
+        Roblox.Focus()
+        Utils.wClick("left", this.x+this.xOffset, this.y+this.yOffset)
+        Sleep(200)
+        SendInput("{x}")
+    } 
+}
