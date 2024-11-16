@@ -34,7 +34,7 @@ class MacroGui {
 
     static lockToggle := 1
     static ui := GuiMethods("-Caption +Border +AlwaysOnTop", "Yuh's Chill AV Macro")
-    
+
     static Show() {
         this.ui.BackColor := "0x2f2f2f"
         this.ui.Show("x15 y15 w1250 h637")
@@ -83,7 +83,7 @@ class MacroGui {
         this.ui.AddTitleGroupBox("0x3fc380", 815, 315, "Private Server", , 90) ; Priv Server Box
         this.ui.AddCheckbox("vprivToggle c0xFFFFFF x825 y345 Checked","Use Private Server")
         this.ui.AddButton("vsaveLink x1092 y340", "Save Private Server Link").OnEvent("Click", (*) => this.savePSLink())
-        this.ui.AddEdit("vpslink x825 y370 w400 r1", FileMethods.Read(A_ScriptDir "\Settings\PSLink.txt"))
+        this.ui.AddEdit("vpsLink x825 y370 w400 r1", FileMethods.Read(A_ScriptDir "\Settings\PSLink.txt"))
 
         this.ui.AddTitleGroupBox("0xc300ff", 815, 415, "Process Log", 225, 150)
         this.ui.SetFont("s11")

@@ -122,7 +122,7 @@ class Utils {
 
     static ImageSearchLoop( &FoundX, &FoundY, X1, Y1, X2, Y2, imagePath, searchDelay := 1000, maxRetryCount := 15) {
         loop maxRetryCount + 1 {
-            if !FocusRoblox()
+            if !Roblox.Focus()
                 return false
                 
             if ImageSearch(&FoundX, &FoundY, X1, Y1, X2, Y2, imagePath)
@@ -131,5 +131,41 @@ class Utils {
             Sleep(searchDelay)
         }
         return false
+    }
+}
+
+class Roblox {
+    static Focus() {
+        if !WinExist("ahk_exe RobloxPlayerBeta.exe")
+            return false
+        WinActivate("ahk_exe RobloxPlayerBeta.exe")
+        return true
+    }
+
+    static Join() {
+        psLink := fileMethods.Read(A_ScriptDir "\Settings\PSLink.txt")
+
+        if MacroGui.ui["privToggle"].Value {
+            if psLink != "" {
+                MacroGui.addProcess("Joining Set Private Server")
+                return Run(psLink)
+            } else {
+                MacroGui.addProcess("Invalid Private Server")
+                return
+            }
+        }
+    }
+
+    static Attach() {
+        MacroGui.addProcess("Cant Find Roblox")
+        this.Server()
+        WinWait("ahk_exe RobloxPlayerBeta.exe")
+    
+        MacroGui.addProcess("Attatching to Roblox")
+        this.Focus()
+        WinRestore("ahk_exe RobloxPlayerBeta.exe")
+    
+        WinGetPos(&X, &Y,,, MacroGui.ui)
+        WinMove(X - 8, Y + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
     }
 }
