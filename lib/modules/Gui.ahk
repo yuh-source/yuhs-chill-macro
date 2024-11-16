@@ -75,12 +75,14 @@ class MacroGui {
 
         this.ui.AddTitleGroupBox("0x3fc380", 815, 315, "Private Server", , 90) ; Priv Server Box
         global usePriv := this.ui.AddCheckbox("vprivToggle c0xFFFFFF x825 y345 Checked","Use Private Server")
-        this.ui.AddButton("vsaveLink x1092 y340", "Save Private Server Link").OnEvent("Click", (*) => FileMethods.Write(A_ScriptDir "\Settings\PSLink.txt", this.ui["psLink"].Text))
+        this.ui.AddButton("vsaveLink x1092 y340", "Save Private Server Link").OnEvent("Click", (*) => this.WritePsLink())
         this.ui.AddEdit("vpslink x825 y370 w400 r1", FileMethods.Read(A_ScriptDir "\Settings\PSLink.txt"))
 
         this.ui.AddTitleGroupBox("0xc300ff", 815, 415, "Process Log", 225, 150)
         this.ui.SetFont("s11")
         this.ui.AddText("vprocess c0xFFFFFF x830 y438 w180 r7", "")
+
+
     }
 
     static Lock(ctrl) {
@@ -130,6 +132,17 @@ class MacroGui {
             this.modPrio := [cardPrio["prio1"].Text, cardPrio["prio2"].Text, cardPrio["prio3"].Text, cardPrio["prio4"].Text]
             cardPrio.Destroy()
         }
+    }
+
+    static WritePSLink() {
+        reg1 := "https:\/\/www\.roblox\.com(\/[a-z]{2})?\/games\/\d+\/[a-zA-Z0-9-]+(\?privateServerLinkCode=\d+)?"
+        reg2 := "https://www\.roblox\.com/share\?code=fa([0-9]+([A-Za-z]+[0-9]+)+)[A-Za-z]+&type=Server"
+        if !RegExMatch(this.ui["psLink"].Text, reg1) && !RegExMatch(this.ui["psLink"].Text, reg2) {
+            MsgBox("Invalid Private Server Link")
+            return
+        }
+        FileMethods.Write(A_ScriptDir "\Settings\PSLink.txt", this.ui["psLink"].Text)
+        
     }
 }
 
