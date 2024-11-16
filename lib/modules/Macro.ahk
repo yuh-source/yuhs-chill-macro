@@ -70,8 +70,8 @@ class Macro {
         }
         MacroGui.addProcess("Macro Ended")
 
-        if webhookFile.Read() != "" {
-            WindowCaptureToWebhook()
+        if FileMethods.Read("\Settings\DiscordWebhook.txt") != "" {
+            Capture.ToWebHook()
         }
         
         if (DateDiff(Lobby.prevChallengeTime, A_Now, 'M') <= -30 && MacroGui.ui["chalToggle"].Value) 
@@ -122,7 +122,7 @@ class Paragon {
     
         if firstCard {
             MacroGui.addProcess("First Card Was Bad")
-            ; OpenMiscSettings("Lobby") ######################################
+            LevelUI.MiscSettings("Lobby")
             return false
         } else {
             MacroGui.addProcess("Selected All Modifiers")
