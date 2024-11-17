@@ -30,7 +30,7 @@ class Macro {
         MacroGui.addProcess(MacroGui.ui["userStage"].Text MacroGui.ui["userAct"].Value)
         stagePath := MacroGui.ui["raidToggle"].value ? "\TinyTask\Raid" MacroGui.ui["userRaidAct"].Value ".exe" : "\TinyTask\" MacroGui.ui["userStage"].Text MacroGui.ui["userAct"].Value ".exe"
         standardPath := MacroGui.ui["raidToggle"].value ? "\TinyTask\RaidStandard.exe" : "\TinyTask\" MacroGui.ui["userStage"].Text "Standard.exe"
-        useTinyTask := TTaskMethods.Ctrl(A_ScriptDir (FileExist(A_ScriptDir stagePath) ? stagePath : standardPath))
+        useTinyTask := TTaskMethods.Ctrl(A_ScriptDir (FileExist(A_ScriptDir stagePath) ? A_ScriptDir stagePath : A_ScriptDir standardPath))
 
         if useTinyTask {
             MacroGui.addProcess("Finished " MacroGui.ui["userStage"].text MacroGui.ui["userAct"].Value ".exe")

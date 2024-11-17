@@ -306,7 +306,6 @@ Class EmbedBuilder {
     Class Webhook extends Discord {
        __New(webhookURL) {
           if !RegexMatch(webhookURL, "^https?:\/\/discord\.com\/api\/webhooks\/\d+\/[\w|-]+$") {
-            MsgBox(webhookURL)
             throw Error("invalid webhook url")
           }
           this.webhookURL := webhookURL
