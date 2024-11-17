@@ -33,10 +33,8 @@ class Macro {
         useTinyTask := TTaskMethods.Ctrl(A_ScriptDir (FileExist(A_ScriptDir stagePath) ? stagePath : standardPath))
 
         if useTinyTask {
-            MsgBox("here")
             MacroGui.addProcess("Finished " MacroGui.ui["userStage"].text MacroGui.ui["userAct"].Value ".exe")
         } else {
-            MsgBox("there")
             try {
                 stage := MacroGui.ui["raidToggle"].Value ? "Raid" : MacroGui.ui["userStage"].Text
                 act := MacroGui.ui["raidToggle"].Value ? MacroGui.ui["userRaidAct"].Value : MacroGui.ui["userAct"].Value
