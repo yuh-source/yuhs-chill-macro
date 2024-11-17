@@ -163,7 +163,7 @@ class MacroGui {
 
     static savePSLink() {
         reg1 := "https:\/\/www\.roblox\.com(\/[a-z]{2})?\/games\/\d+\/[a-zA-Z0-9-]+(\?privateServerLinkCode=\d+)?"
-        reg2 := "https://www\.roblox\.com/share\?code=fa([0-9]+([A-Za-z]+[0-9]+)+)[A-Za-z]+&type=Server"
+        reg2 := "https://www\.roblox\.com/share\?code=[A-Za-z0-9]+&type=Server"
         if !RegExMatch(this.ui["psLink"].Text, reg1) && !RegExMatch(this.ui["psLink"].Text, reg2) {
             MsgBox("Invalid Private Server Link")
             return
