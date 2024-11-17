@@ -7,10 +7,13 @@ WM_LBUTTONDOWN(wParam, lParam, msg, hwnd) {
 }
 
 WM_MOVE(wParam, lParam, msg, hwnd) {
-    if !WinExist("ahk_exe RobloxPlayerBeta.exe") || GuiFromHwnd(hwnd).Title != "Yuh's Chill AV Macro"
+    try {
+        if !WinExist("ahk_exe RobloxPlayerBeta.exe") || GuiFromHwnd(hwnd).Title != "Yuh's Chill AV Macro"
+            return
+        WinMove(lParam & 0xFFFF - 8, (lParam >> 16) + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
+    } catch {
         return
-    SetWinDelay(-1)
-    WinMove(lParam & 0xFFFF - 8, (lParam >> 16) + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
+    }
 } 
 
 OnMessage(0x201, WM_LBUTTONDOWN)

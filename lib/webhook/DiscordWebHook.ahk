@@ -11,13 +11,13 @@
  */
 
 class Capture {
-    static imgSavePath := A_ScriptDir "\Images\UI\Webhook\RewardScreen.JPG"
+    static imgSavePath := A_ScriptDir "\lib\resources\UI\Webhook\RewardScreen.JPG"
 
     static ToWebHook() {
         this.CaptureRoblox()
     
         thumbnailimg := A_ScriptDir "\lib\resources\UI\him.jpg"
-        webhook := Discord.Webhook(FileMethods.Read("\Settings\DiscordWebhook.txt"))
+        webhook := Discord.Webhook(FileMethods.Read(A_ScriptDir "\Settings\DiscordWebhook.txt"))
         image := AttachmentBuilder(this.imgSavePath)
         thumbnail := AttachmentBuilder(thumbnailimg)
     

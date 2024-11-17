@@ -27,7 +27,8 @@ Class LevelUI {
             return false
         }
         MacroGui.addProcess("Found Vote Start")
-        if clickstart && !Setup.SetupTTask{
+        MsgBox(Setup.SetupTTask)
+        if clickstart && !Setup.SetupTTask {
             Utils.wClick("Left", 375, 155)
         }
         return true

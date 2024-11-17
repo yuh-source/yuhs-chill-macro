@@ -21,6 +21,7 @@ $F2:: {
 CoordMode('Mouse', 'Window')
 CoordMode('Pixel', 'Window')
 SendMode('Input')
+SetWinDelay(-1)
 
 #Include lib\modules\Methods.ahk
 #Include lib\modules\Gui.ahk
