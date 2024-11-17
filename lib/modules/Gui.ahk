@@ -110,7 +110,7 @@ class MacroGui {
     }
 
     static addProcess(text) {
-        this.ui["process"].Value = text "`n" this.ui["process"].Value
+        this.ui["process"].Value := text "`n" this.ui["process"].Value
     }
 
     static Lock(ctrl) {
