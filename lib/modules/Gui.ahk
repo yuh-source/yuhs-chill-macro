@@ -71,7 +71,7 @@ class MacroGui {
         this.ui.AddTitleGroupBox("0xa537fd", 815, 115, "Special Options") ; Special options box 
         this.ui.AddCheckbox("vretryToggle c0xFFFFFF x825 y135 Checked", "Auto Restart Full Macro On Error")
         this.ui.AddCheckbox("vcraftToggle c0xFFFFFF x1025 y135", "Auto Craft Green Crystals")
-        this.ui.AddCheckbox("vchallToggle c0xFFFFFF x825 y153", "Auto Complete Challenges")
+        this.ui.AddCheckbox("vchalToggle c0xFFFFFF x825 y153", "Auto Complete Challenges")
 
         this.ui.AddTitleGroupBox("0x3DC2FF", 815, 185, "Level Options", , 55) ; Level Options Box 
         this.ui.AddDDL("vuserStage x825 y207 w120 r4", this.stageArrays[1])
