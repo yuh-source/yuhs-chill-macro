@@ -32,7 +32,7 @@ class MacroGui {
     static raidArray := [1, 2, 3, 4]
 
     static modArray := ["thrice", "regen", "strong", "shielded", "exploding", "fast", "revitalise", "quake", "champions", "dodge", "drowsy", "immunity"]
-    static modPrio := [] ; ["shielded", "regen", "strong", "drowsy"] by default
+    static modPrio := ["shielded", "regen", "strong", "drowsy"]
 
     static lockToggle := 1
     static ui := GuiMethods("-Caption +Border +AlwaysOnTop", "Yuh's Chill AV Macro")
@@ -106,7 +106,6 @@ class MacroGui {
 
         this.ui.AddPic("vdImage x1180 y570", A_ScriptDir "\lib\resources\UI\discord.png").OnEvent("Click", (*) => Run("https://discord.gg/aZZVgMrXCS"))
         WinSetTransparent("255", this.ui["dImage"])
-
     }
 
     static addProcess(text) {
@@ -170,7 +169,6 @@ class MacroGui {
             return
         }
         FileMethods.Write(A_ScriptDir "\Settings\PSLink.txt", this.ui["psLink"].Text)
-        
     }
 
     static WebHook(*) {
