@@ -220,10 +220,10 @@ class Capture {
 
     static Roblox() {
         WinGetPos(&X, &Y, &W, &H, "ahk_exe RobloxPlayerBeta.exe")
+
         wgcp := wincapture.WGC()
         box := Buffer(16, 0)
         NumPut("uint", X + 8, "uint", Y + 31, "uint", X + 811, "uint", Y + 631, box)
-
         bmBuf := wgcp.capture(box)
         bmBuf.save(this.imgSavePath)
     }
@@ -233,13 +233,14 @@ class Capture {
 
         wgcp := wincapture.WGC()
         box := Buffer(16, 0)
-        NumPut("uint", X + 8, "uint", Y + 31, "uint", X + 811, "uint", Y + 631, box)
+        NumPut("uint", X + 220 , "uint", Y + 283, "uint", X + 220 + 380, "uint", Y + 285 + 15, box)
 
         bmBuf := wgcp.capture(box)
 
         param := RapidOcr.OcrParam()
         ocr := RapidOcr({ models: A_ScriptDir '\lib\modules\rapidocr\models' })
 
-        MsgBox ocr.ocr_from_bitmapdata(bmBuf.info)
+        ocrout := ocr.ocr_from_bitmapdata(bmBuf.cvtGray(1).threshold(1, 23).info)
+        MsgBox(ocrout)
     }
 }

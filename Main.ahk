@@ -15,7 +15,7 @@ $F3:: {
 }
 
 $F2:: {
-    Paragon.Pick()
+    Capture.Paragon()
 }
 
 CoordMode('Mouse', 'Window')
@@ -32,7 +32,6 @@ SetWinDelay(-1)
 #Include lib\modules\webhook\DiscordWebhook.ahk
 #include lib\modules\rapidocr\RapidOcr.ahk
 #include lib\modules\wincapture\wincapture.ahk
-#include lib\modules\gdiplus\Gdip_All.ahk
 
 #Include "lib\macros\PlanetNamek.ahk"
 #Include "lib\macros\SandVillage.ahk"
@@ -61,11 +60,3 @@ Main() {
         return Main()
     }
 }
-
-Capture.Paragon()
-
-
-; param := RapidOcr.OcrParam()
-; param.doAngle := false ;, param.maxSideLen := 300
-; ocr := RapidOcr({ models: A_ScriptDir '\lib\modules\rapidocr\models' })
-; MsgBox ocr.ocr_from_file(A_ScriptDir "\lib\resources\Level\Paragon\Modifiers.png", param)
