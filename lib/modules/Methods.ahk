@@ -173,8 +173,10 @@ class Roblox {
     }
 
     static mv() {
-        WinGetPos(&X, &Y,,, MacroGui.ui)
-        WinMove(X - 8, Y + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
+        if WinExist("ahk_exe RobloxPlayerBeta.exe") {
+            WinGetPos(&X, &Y,,, MacroGui.ui)
+            WinMove(X - 8, Y + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
+        }
     }
 }
 
