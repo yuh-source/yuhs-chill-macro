@@ -30,15 +30,19 @@ SetWinDelay(-1)
 #Include lib\modules\Macro.ahk
 
 #Include lib\modules\webhook\DiscordWebhook.ahk
+#include lib\modules\rapidocr\RapidOcr.ahk
+#include lib\modules\wincapture\wincapture.ahk
+#include lib\modules\gdiplus\Gdip_All.ahk
 
-#Include "Macros\PlanetNamek.ahk"
-#Include "Macros\SandVillage.ahk"
-#Include "Macros\DoubleDungeon.ahk"
-#Include "Macros\ShibuyaStation.ahk"
-#Include "Macros\ShibuyaAftermath.ahk"
-#Include "Macros\Raid.ahk"
+#Include "lib\macros\PlanetNamek.ahk"
+#Include "lib\macros\SandVillage.ahk"
+#Include "lib\macros\DoubleDungeon.ahk"
+#Include "lib\macros\ShibuyaStation.ahk"
+#Include "lib\macros\ShibuyaAftermath.ahk"
+#Include "lib\macros\Raid.ahk"
 
 MacroGui.Show()
+Roblox.mv()
 
 Main() {
     Macro.Join()
@@ -57,3 +61,11 @@ Main() {
         return Main()
     }
 }
+
+Capture.Paragon()
+
+
+; param := RapidOcr.OcrParam()
+; param.doAngle := false ;, param.maxSideLen := 300
+; ocr := RapidOcr({ models: A_ScriptDir '\lib\modules\rapidocr\models' })
+; MsgBox ocr.ocr_from_file(A_ScriptDir "\lib\resources\Level\Paragon\Modifiers.png", param)

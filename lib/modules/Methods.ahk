@@ -169,8 +169,77 @@ class Roblox {
         this.Focus()
         WinRestore("ahk_exe RobloxPlayerBeta.exe")
     
+        this.mv()
+    }
+
+    static mv() {
         WinGetPos(&X, &Y,,, MacroGui.ui)
         WinMove(X - 8, Y + 5, 800, 600, "ahk_exe RobloxPlayerBeta.exe")
     }
 }
 
+class Capture {
+    static imgSavePath := A_ScriptDir "\lib\resources\level\rewards.jpg"
+    static modSavePath := A_ScriptDir "\lib\resources\Level\Paragon\modifiers.png"
+
+    static ToWebHook() {
+        this.Roblox()
+
+        thumbnailimg := A_ScriptDir "\lib\resources\UI\him.jpg"
+        webhook := Discord.Webhook(FileMethods.Read(A_ScriptDir "\Settings\DiscordWebhook.txt"))
+        image := AttachmentBuilder(this.imgSavePath)
+        thumbnail := AttachmentBuilder(thumbnailimg)
+
+        embed := EmbedBuilder()
+        embed.setTitle("yuhs-chill-macro")
+        embed.setDescription("mfw webhook")
+        embed.setURL("https://github.com/yuh-source/yuhs-chill-macro")
+        embed.setColor(0xFFFFFF)
+        embed.addFields([
+        {
+        name:"Macro Status",
+        value: MacroGui.ui["displayLoops"].Text "`n" MacroGui.ui["rph"].Text "`n" MacroGui.ui["timeElapsed"].Text,
+        inline: true
+        },
+        {
+        name: "Challenge Info",
+        value: MacroGui.ui["displayChals"].Text,
+        inline: true
+        },
+        ])
+        embed.setFooter({text:"yuh"})
+        embed.setThumbnail({url:thumbnail.attachmentName})
+        embed.setImage({url:image.attachmentName || this.imgSavePath})
+
+        webhook.send({
+        embeds: [embed],
+        files: [image]
+        })
+        MacroGui.addProcess("Sending Capture To Webhook")
+    }
+
+    static Roblox() {
+        WinGetPos(&X, &Y, &W, &H, "ahk_exe RobloxPlayerBeta.exe")
+        wgcp := wincapture.WGC()
+        box := Buffer(16, 0)
+        NumPut("uint", X + 8, "uint", Y + 31, "uint", X + 811, "uint", Y + 631, box)
+
+        bmBuf := wgcp.capture(box)
+        bmBuf.save(this.imgSavePath)
+    }
+
+    static Paragon() {
+        WinGetPos(&X, &Y, &W, &H, "ahk_exe RobloxPlayerBeta.exe")
+
+        wgcp := wincapture.WGC()
+        box := Buffer(16, 0)
+        NumPut("uint", X + 8, "uint", Y + 31, "uint", X + 811, "uint", Y + 631, box)
+
+        bmBuf := wgcp.capture(box)
+
+        param := RapidOcr.OcrParam()
+        ocr := RapidOcr({ models: A_ScriptDir '\lib\modules\rapidocr\models' })
+
+        MsgBox ocr.ocr_from_bitmapdata(bmBuf.info)
+    }
+}
