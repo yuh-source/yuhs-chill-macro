@@ -102,22 +102,35 @@ class Paragon {
         }
     
         while true {
-            cardFound := false
-            Sleep(1500)
-            for modifier in MacroGui.modPrio {
-                if Utils.ImageSearchLoop(%"Images.level.paragon[" modifier "]"%, 190, 270, 620, 305, 0, 2, &X, &Y) {
-                    Utils.wClick("left", X, Y)
-                    cardFound := true
-                }
+            ; for modifier in MacroGui.modPrio {
+            ;     if Utils.ImageSearchLoop(%"Images.level.paragon[" modifier "]"%, 190, 270, 620, 305, 0, 2, &X, &Y) {
+            ;         Utils.wClick("left", X, Y)
+            ;         cardFound := true
+            ;     }
                 
-                if cardFound {
+            ;     if cardFound {
+            ;         firstCard := false
+            ;         Sleep(50)
+            ;         MouseMove(410, 470)
+            ;         continue 2
+            ;     }
+            ; }
+            ; break
+
+            if firstcard = true {
+                if Capture.Paragon(&X, &Y, ["immunity", "champions", "thrice", "revitalise", "exploding", "quake"]) {
+                    Utils.wClick("left", X, Y)
+                    this.clearMouse()
                     firstCard := false
-                    Sleep(50)
-                    MouseMove(410, 470)
-                    continue 2
                 }
+            } else {
+                Sleep(1500)
+                if Capture.Paragon(&X, &Y) {
+                    Utils.wClick("left", X, Y)
+                    this.clearMouse()
+                }
+                break
             }
-            break
         }
     
         if firstCard {
@@ -128,6 +141,11 @@ class Paragon {
             MacroGui.addProcess("Selected All Modifiers")
             return true
         }
+    }
+
+    static clearMouse() {
+        Sleep(50)
+        MouseMove(410, 470)
     }
 }
 

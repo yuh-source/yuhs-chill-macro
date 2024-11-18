@@ -15,7 +15,7 @@ $F3:: {
 }
 
 $F2:: {
-    Capture.Finder2()
+    Paragon.Pick()
 }
 
 CoordMode('Mouse', 'Window')
