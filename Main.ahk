@@ -29,7 +29,7 @@ SetWinDelay(-1)
 #Include lib\modules\Level.ahk
 #Include lib\modules\Macro.ahk
 
-#Include lib\webhook\DiscordWebhook.ahk
+#Include lib\modules\webhook\DiscordWebhook.ahk
 
 #Include "Macros\PlanetNamek.ahk"
 #Include "Macros\SandVillage.ahk"
@@ -57,4 +57,3 @@ Main() {
         return Main()
     }
 }
-
