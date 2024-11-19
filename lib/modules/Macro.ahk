@@ -101,21 +101,6 @@ class Paragon {
         }
     
         while true {
-            ; for modifier in MacroGui.modPrio {
-            ;     if Utils.ImageSearchLoop(%"Images.level.paragon[" modifier "]"%, 190, 270, 620, 305, 0, 2, &X, &Y) {
-            ;         Utils.wClick("left", X, Y)
-            ;         cardFound := true
-            ;     }
-                
-            ;     if cardFound {
-            ;         firstCard := false
-            ;         Sleep(50)
-            ;         MouseMove(410, 470)
-            ;         continue 2
-            ;     }
-            ; }
-            ; break
-
             if firstcard = true {
                 if Capture.Paragon(&X, &Y, ["immunity", "champions", "thrice", "revitalise", "exploding", "quake"]) {
                     Utils.wClick("left", X, Y)
