@@ -98,23 +98,22 @@ class Paragon {
             if !Utils.ImageSearchLoop(Images.level.stageInfo, 710, 395, 780, 415, 1000, 60) {
                 MacroGui.addProcess("Cant Detect Stage Info")
             }
+
+            if this.Search(&X, &Y, ["immunity", "champions", "thrice", "revitalise", "exploding", "quake"]) {
+                Utils.wClick("left", X, Y)
+                this.clearMouse()
+                firstCard := false
+            }
         }
     
         while true {
-            if firstcard = true {
-                if Capture.Paragon(&X, &Y, ["immunity", "champions", "thrice", "revitalise", "exploding", "quake"]) {
-                    Utils.wClick("left", X, Y)
-                    this.clearMouse()
-                    firstCard := false
-                }
-            } else {
-                Sleep(1500)
-                if Capture.Paragon(&X, &Y) {
-                    Utils.wClick("left", X, Y)
-                    this.clearMouse()
-                }
-                break
+            Sleep(1500)
+            if this.Search(&X, &Y) {
+                Utils.wClick("left", X, Y)
+                this.clearMouse()
+                continue
             }
+            break
         }
     
         if firstCard {
@@ -127,7 +126,22 @@ class Paragon {
         }
     }
 
-    static clearMouse() {
+    static Search(&outX, &outY, prio := MacroGui.modPrio) {
+        WinGetPos(&X, &Y, &W, &H, "ahk_exe RobloxPlayerBeta.exe")
+        FindText().PicLib("|<champions>*19$60.UrzzzzzzzzDrzzzzzzzzTkwB8kvXVkTmNAUmP9YrTrPharPRilDrPharPRiwUrMBakP1iqlrQhqrvXilU|<dodge>*46$34.3zzjzw3zyTznDztzzSMQC71t9UkN7ZmvRYQr94aQ31UEM0yD/VkU|<drowsy>*17$39.7zzzzzsDzzzzzEzzzzzvU89YUQQ10UYt3UlY0V1M68UCA88sCF1X3jVnQCQ|<exploding>*19$55.1zzlzy1zzUzzszz4zzkzjwSzXzzcMU2A600A0A204100007342840E8TUW1420A40U08E806E0HcCAC2HA4|<fast>*18$49.0zzls3zzbzwswTzxks48C3UM8A0I70k004F3DUMk0S8lblwM1DUEks2AUjsMQS1iMM|<immunity>*18$49.zzzzzyBzjzzzzzgzrzzzzzyDs0E160E0s000300184kH9UkHUGN9YWN9s9AYm1AYARaqPYiL7A|<quake>*17$35.kzzyDy0zzwTwEzzszNt6E183mAU0E7YM810CAUE200840220MA4Y4|<regen>*18$35.Uzzzzy0zzzzwFrzxzsm30UUE00000000U0800F04MAUk88mtVkMPY|<revitalize>*18$55.3zzljy8zzUzzwXz6TzoRvzlzXzzP88m0E102000N000W20010WMUFX001kl4E8XUAUssV0U08CMSSskFM64|<shielded>*18$45.17XyDXzs8yTlwTz97zaDXbss4EFUEM1000A0160U0140186028U280kEEUEM1a23623Y|<strong>*18$36.1bzzzzDXzzzzD0231U1U211UsbAtAAQbSNQY1lS3QUXvT7RyU|<thrice>*18$35.0Fzlzy0XzrzzD7zzzyT1U88Ay32EGNwmRD4nvZvDDbr/q23jiriC4", true)
+
+        for i in prio {
+            try {
+                ok := FindText(&outX, &outY, X + 220, Y + 270, X + 500, Y + 300,,, FindText().PicLib(i))
+                if ok[1].id := i  {
+                    return true
+                }
+                return false
+            }
+        }
+    }
+
+    static ClearMouse() {
         Sleep(50)
         MouseMove(410, 470)
     }
