@@ -60,5 +60,3 @@ Main() {
         return Main()
     }
 }
-
-; https://github.com/Descolada/OCR lightweight looks promising
