@@ -30,10 +30,7 @@ SetWinDelay(-1)
 #Include lib\modules\Macro.ahk
 
 #Include lib\modules\webhook\DiscordWebhook.ahk
-#include lib\modules\rapidocr\RapidOcr.ahk
 #include lib\modules\wincapture\wincapture.ahk
-#include lib\modules\ocr\Ocr.ahk
-#include lib\modules\gdiplus\Gdip_All.ahk
 #include lib\modules\findtext\FindText.ahk
 
 #Include "lib\macros\PlanetNamek.ahk"

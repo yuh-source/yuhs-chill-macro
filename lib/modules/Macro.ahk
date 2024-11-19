@@ -98,7 +98,6 @@ class Paragon {
             if !Utils.ImageSearchLoop(Images.level.stageInfo, 710, 395, 780, 415, 1000, 60) {
                 MacroGui.addProcess("Cant Detect Stage Info")
             }
-            Sleep(3000)
         }
     
         while true {
