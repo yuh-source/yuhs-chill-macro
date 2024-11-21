@@ -129,7 +129,7 @@ class Lobby {
         Sleep(3000)
     
         for path, name in MacroGui.stageArrays {
-            if Utils.ImageSearchLoop(%"Images.lobby.challenges." name%, 490, 150, 620, 220, 500, 2) {
+            if Utils.ImageSearchLoop(Images.lobby.challenges[name], 490, 150, 620, 220, 500, 2) {
                 MacroGui.addProcess("Found " name)
                 SendInput("{d up}{s up}")
                 return name
@@ -138,7 +138,7 @@ class Lobby {
     
         Utils.wClick("Left", 710, 470)
         SendInput("{d up}{s up}")
-        return ; FullMacro()
+        return Main()
     }
 
     static AreaMenuTP(area) {

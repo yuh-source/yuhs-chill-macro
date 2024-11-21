@@ -77,12 +77,7 @@ class Images {
         stages: "*100 " A_ScriptDir "\lib\resources\Lobby\Stages.png",
         notEnoughItems: "*100 " A_ScriptDir "\lib\resources\Lobby\Not Enough Items.png",
         
-        challenges: {
-            PlanetNamek: "*100 " A_ScriptDir "\lib\resources\Lobby\PlanetNamek Challenge Banner.png",
-            SandVillage: "*100 " A_ScriptDir "\lib\resources\Lobby\SandVillage Challenge Banner.png",
-            DoubleDungeon: "*100 " A_ScriptDir "\lib\resources\Lobby\DoubleDungeon Challenge Banner.png",
-            ShibuyaStation: "*100 " A_ScriptDir "\lib\resources\Lobby\ShibuyaStation Challenge Banner.png"
-        }
+        challenges: this.InitChallengeMap()
     }
 
     static level := {
@@ -99,6 +94,14 @@ class Images {
         mp := Map()
         Loop MacroGui.modArray.Length {
             mp[MacroGui.modArray[A_Index]] := "*25 " A_ScriptDir "\lib\resources\Level\Paragon\" MacroGui.modArray[A_Index] ".png"
+        }
+        return mp
+    }
+
+    static InitChallengeMap() {
+        mp := Map()
+        Loop MacroGui.stageArrays[0].Length {
+            mp[MacroGui.stageArrays[0][A_Index]] := "*100 " A_ScriptDir "\lib\resources\Lobby\" MacroGui.stageArrays[0][A_Index] " Challenge Banner.png"
         }
         return mp
     }
