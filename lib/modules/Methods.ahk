@@ -100,8 +100,8 @@ class Images {
 
     static InitChallengeMap() {
         mp := Map()
-        Loop MacroGui.stageArrays[0].Length {
-            mp[MacroGui.stageArrays[0][A_Index]] := "*100 " A_ScriptDir "\lib\resources\Lobby\" MacroGui.stageArrays[0][A_Index] " Challenge Banner.png"
+        Loop MacroGui.stageArrays[1].Length {
+            mp[MacroGui.stageArrays[1][A_Index]] := "*100 " A_ScriptDir "\lib\resources\Lobby\" MacroGui.stageArrays[1][A_Index] " Challenge Banner.png"
         }
         return mp
     }

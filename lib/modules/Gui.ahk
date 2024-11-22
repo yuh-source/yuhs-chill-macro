@@ -78,9 +78,10 @@ class MacroGui {
         this.ui.AddDDL("vuserAct x955 y207 w75 r8", this.actArrays[1]).OnEvent("Change", (*) => this.Paragon())
         this.ui.AddCheckbox("vlegToggle c0xFFFFFF x1040 y211","Legend Stage").OnEvent("Click", (*) => this.AltStageCtrl())
 
-        this.ui.AddTitleGroupBox("0xff4c30", 815, 250, "Raid Options", 205, 55) ; Raid Box
-        this.ui.AddCheckbox("vraidToggle c0xFFFFFF x825 y275", "Select For Raid").OnEvent("Click", (*) => MsgBox("Raid is heavily broken rn, dont use"))
-        this.ui.AddDDL("vuserRaidAct x930 y270 w50 r4", this.raidArray)
+        this.ui.AddTitleGroupBox("0xff4c30", 815, 250, "Raid Options", 210, 55) ; Raid Box
+        this.ui.AddCheckbox("vraidToggle c0xFFFFFF x825 y275", "Raid").OnEvent("Click", (*) => MsgBox("Raid is heavily broken rn, dont use"))
+        this.ui.AddCheckbox("vspiritToggle c0xFFFFFF x880 y275", "Spirit")
+        this.ui.AddDDL("vuserRaidAct x945 y270 w50 r4", this.raidArray)
 
         this.ui.AddTitleGroupBox("0xff7b00", 1035, 250, "Boss Rush", 200, 55)
         this.ui.AddCheckbox("vbossToggle c0xFFFFFF x1045 y275", "Select For Boss Rush")
