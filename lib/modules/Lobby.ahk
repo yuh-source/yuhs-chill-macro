@@ -5,6 +5,7 @@ class Lobby {
     static inChallenge := false
     static currentStage := ""
     static currentAct := ""
+    static raidType := ""
 
     static JoinLevel() {
         if MacroGui.ui["craftToggle"].Value && MacroGui.ui["legToggle"].Value {
@@ -26,9 +27,10 @@ class Lobby {
             return true
         }
     
-        if MacroGui.ui["raidToggle"].Value {
-            MacroGui.addProcess("Entering Raid")
-            this.Raid()
+        if MacroGui.ui["raidToggle"].Value || MacroGui.ui["spiritToggle"].Value  {
+            MacroGui.ui["raidToggle"].Value ? this.raidType := "Raid" : this.raidType := "Spirit"
+            MacroGui.addProcess("Entering " this.raidType)
+            this.%this.raidType%()
             LobbyUI.SelectAct(MacroGui.ui["userRaidAct"].Value)
             return true
         }
@@ -98,6 +100,24 @@ class Lobby {
             return this.Raid()
         }
         SendInput("{w up}{d up}")
+        return
+    }
+
+    static Spirit() {
+        this.AreaMenuTP("Raids")
+        Sleep(1000)
+    
+        SendInput("{w down}")
+        Sleep(2500)
+        SendInput("{d down}")
+        Sleep(2500)
+        SendInput("{d up}")
+    
+        if !Utils.ImageSearchLoop(Images.lobby.stages, 100, 150, 250, 250, 1000, 30) {
+            SendInput("{w up}")
+            return this.Spirit()
+        }
+        SendInput("{w up}")
         return
     }
 
