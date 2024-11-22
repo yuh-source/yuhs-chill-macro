@@ -106,9 +106,9 @@ Class Setup {
             }
         }
     
-        if MacroGui.ui["raidToggle"].Value {
-            MacroGui.addProcess("Raid Setup")
-            Raid()
+        if MacroGui.ui["raidToggle"].Value || MacroGui.ui["spiritToggle"].Value {
+            MacroGui.addProcess(Lobby.raidType " Setup")
+            %Lobby.raidType%()
             return true
         } 
         try {
@@ -134,6 +134,17 @@ Class Setup {
             SendInput("{Right up}")
             Sleep(100)
         
+            this.LookDown()
+            return LevelUI.Start()
+        }
+
+        Spirit() {
+            this.Standard()
+
+            SendInput("{a down}")
+            Sleep(2100)
+            SendInput("{a up}")
+
             this.LookDown()
             return LevelUI.Start()
         }
