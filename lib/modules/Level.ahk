@@ -141,9 +141,9 @@ Class Setup {
         Spirit() {
             this.Standard()
 
-            SendInput("{a down}")
-            Sleep(2100)
-            SendInput("{a up}")
+            SendInput("{d down}")
+            Sleep(2500)
+            SendInput("{d up}")
 
             this.LookDown()
             return LevelUI.Start()
