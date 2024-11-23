@@ -47,6 +47,13 @@ Class LevelUI {
             Utils.wClick("Left", 355, 340)
             return
         }
+        else if button = "Restart" {
+            Utils.wClick("Left", 525, 320)
+            Sleep(150)
+            Utils.wClick("Left", 355, 340)
+            Sleep(150)
+            Utils.wClick("Left", 410, 340)
+        }
         Sleep(150)
         Utils.wClick("Left", 580, 160)
         Sleep(500)
