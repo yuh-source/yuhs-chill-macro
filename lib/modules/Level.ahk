@@ -107,6 +107,10 @@ Class Setup {
         }
     
         if MacroGui.ui["raidToggle"].Value || MacroGui.ui["spiritToggle"].Value {
+            if Lobby.raidType = "" {
+                MacroGui.ui["raidToggle"].Value ? Lobby.raidType := "Raid" : Lobby.raidType := "Spirit"
+            }
+            
             MacroGui.addProcess(Lobby.raidType " Setup")
             %Lobby.raidType%()
             return true

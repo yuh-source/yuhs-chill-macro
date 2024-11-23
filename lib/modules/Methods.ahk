@@ -143,6 +143,7 @@ class Roblox {
                 WinActivate("ahk_exe RobloxPlayerBeta.exe")
                 return true
             }
+            MacroGui.addProcess("Searching For Roblox")
             Sleep(1000)
         }
         MacroGui.addProcess("Cant Find Roblox")
