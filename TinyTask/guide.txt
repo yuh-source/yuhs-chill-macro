@@ -18,5 +18,8 @@ DoubleDungeon3.exe - runs on Double Dungeon act 3 (if legend stage is selected t
 Raid4.exe - runs on raid act 4 (Rengoku)
 RaidStandard.exe - will run on any raid level for which a ttask script does not exist
 
+Spirit4.exe - runs on spirit act 4
+SpiritStandard.exe - etc
+
 ShibuyaStation1.exe - runs on Shibuya station act 1
 ShibuyaAftermath1.exe - the 1st legend stage of Shibuya station (Because Shibuya legend stages have a different name, they will be named accordingly)
