@@ -35,7 +35,11 @@ class MacroGui {
     static raidArray := [1, 2, 3, 4]
 
     static modArray := ["thrice", "regen", "strong", "shielded", "exploding", "fast", "revitalise", "quake", "champions", "dodge", "drowsy", "immunity"]
-    static modPrio := ["shielded", "regen", "strong", "drowsy"]
+    static modFPrio := ["immunity", "champions", "thrice", "revitalise", "exploding", "quake"]
+    static modLPrio := ["shielded", "regen", "strong", "drowsy"]
+
+    static spiritFPrio := ["money", "kings", "warding"]
+    static spiritLPrio := ["strong", "champions", "harvest"]
 
     static lockToggle := 1
     static ui := GuiMethods("-Caption +Border +AlwaysOnTop", "Yuh's Chill AV Macro")
