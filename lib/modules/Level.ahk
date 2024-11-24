@@ -101,7 +101,7 @@ Class Setup {
     static Run(startButtonCheck := false) {
 
         if MacroGui.ui["userAct"].Value = 8 {
-            if !Paragon.Pick() {
+            if !Cards.Paragon() {
                 return false
             }
         }

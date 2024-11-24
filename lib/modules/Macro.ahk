@@ -85,15 +85,15 @@ class Macro {
         }
         
         if MacroGui.ui["userAct"].Value = 8 {
-            LevelUI.Start(true, false), Paragon.Pick(false)
+            LevelUI.Start(true, false), Cards.Paragon(false)
             return LevelUI.Start()
         }
         return LevelUI.Start(true)
     }
 }
 
-class Paragon {
-    static Pick(firstCard := true) {
+class Cards {
+    static Paragon(firstCard := true) {
         if firstCard {
             if !Utils.ImageSearchLoop(Images.level.stageInfo, 710, 395, 780, 415, 1000, 60) {
                 MacroGui.addProcess("Cant Detect Stage Info")

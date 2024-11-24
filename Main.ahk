@@ -15,7 +15,7 @@ $F3:: {
 }
 
 $F2:: {
-    Paragon.Pick()
+    Cards.Paragon()
 }
 
 CoordMode('Mouse', 'Window')
