@@ -84,7 +84,7 @@ class MacroGui {
 
         this.ui.AddTitleGroupBox("0xff4c30", 815, 250, "Raid Options", 210, 55) ; Raid Box
         this.ui.AddCheckbox("vraidToggle c0xFFFFFF x825 y275", "Raid").OnEvent("Click", (*) => MsgBox("Raid is heavily broken rn, dont use"))
-        this.ui.AddCheckbox("vspiritToggle c0xFFFFFF x880 y275", "Spirit")
+        this.ui.AddCheckbox("vspiritToggle c0xFFFFFF x880 y275", "Spirit").OnEvent("Click", (*) => this.Spirit())
         this.ui.AddDDL("vuserRaidAct x945 y270 w50 r4", this.raidArray)
 
         this.ui.AddTitleGroupBox("0xff7b00", 1035, 250, "Boss Rush", 200, 55)
@@ -166,6 +166,32 @@ class MacroGui {
         savePriority(*) {
             this.modPrio := [cardPrio["prio1"].Text, cardPrio["prio2"].Text, cardPrio["prio3"].Text, cardPrio["prio4"].Text]
             cardPrio.Destroy()
+        }
+    }
+
+    static Spirit(*) {
+        if this.ui["spiritToggle"].Value {
+            spiritPrio := GuiMethods("+AlwaysOnTop", "Choose Your Spirit Priority")
+            spiritPrio.BackColor := "0x2f2f2f"
+            spiritPrio.Show("w360 h150")
+
+            spiritPrio.AddText("c0xFFFFFF x15 y15", "First Cards")
+            spiritPrio.AddDDL("vfprio1 x15 y30 w100 Choose1", this.spiritFPrio)
+            spiritPrio.AddDDL("vfprio2 x130 y30 w100 Choose2", this.spiritFPrio)
+            spiritPrio.AddDDL("vfprio3 x245 y30 w100 Choose3", this.spiritFPrio)
+
+            spiritPrio.AddText("c0xFFFFFF x15 y65", "Last Cards")
+            spiritPrio.AddDDL("vlprio1 x15 y80 w100 Choose1", this.spiritLPrio)
+            spiritPrio.AddDDL("vlprio2 x130 y80 w100 Choose2", this.spiritLPrio)
+            spiritPrio.AddDDL("vlprio3 x245 y80 w100 Choose3", this.spiritLPrio)
+
+            spiritPrio.AddButton("vsbutton x130 y115 w100", "Confirm").OnEvent("Click", (*) => SaveSpiritPriority())
+        }
+
+        SaveSpiritPriority(*) {
+            this.spiritFPrio := [spiritPrio["fprio1"].Text, spiritPrio["fprio2"].Text, spiritPrio["fprio3"].Text]
+            this.spiritLPrio := [spiritPrio["lprio1"].Text, spiritPrio["lprio2"].Text, spiritPrio["lprio3"].Text]
+            spiritPrio.Destroy()
         }
     }
 

@@ -100,7 +100,7 @@ Class Setup {
     
     static Run(startButtonCheck := false) {
 
-        if MacroGui.ui["userAct"].Value = 8 {
+        if MacroGui.ui["userAct"].Value = 8 || MacroGui.ui["spiritToggle"].Value {
             if !Cards.Pick() {
                 return false
             }
