@@ -169,7 +169,7 @@ class Lobby {
         }
     
         Utils.wClick("Left", 40, 350)
-        Sleep(150)
+        Sleep(300)
         MacroGui.addProcess("Teleporting to " area)
     
         if (areaCoords.HasOwnProp(area)) {

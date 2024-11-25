@@ -99,6 +99,8 @@ class Cards {
                 MacroGui.addProcess("Cant Detect Stage Info")
             }
 
+            Sleep(1000)
+
             if this.Search(&X, &Y, MacroGui.ui["spiritToggle"].Value ? MacroGui.spiritFPrio : MacroGui.modFPrio) {
                 Utils.wClick("left", X, Y)
                 this.clearMouse()
@@ -106,7 +108,7 @@ class Cards {
             }
 
             if MacroGui.ui["spiritToggle"].Value {
-                MacroGui.addProcess("Picked Spirit Card")
+                MacroGui.addProcess("Picked First Card")
                 return true
             }
         }
