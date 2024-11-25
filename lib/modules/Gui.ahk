@@ -38,6 +38,7 @@ class MacroGui {
     static modFPrio := ["immunity", "champions", "thrice", "revitalise", "exploding", "quake"]
     static modLPrio := ["shielded", "regen", "strong", "drowsy"]
 
+    static spiritFArray := ["money", "kings", "warding", "fisticuffs", "notrait"]
     static spiritFPrio := ["money", "kings", "warding"]
     static spiritLPrio := ["strong", "champions", "harvest"]
 
@@ -176,9 +177,9 @@ class MacroGui {
             spiritPrio.Show("w360 h150")
 
             spiritPrio.AddText("c0xFFFFFF x15 y15", "First Cards")
-            spiritPrio.AddDDL("vfprio1 x15 y30 w100 Choose1", this.spiritFPrio)
-            spiritPrio.AddDDL("vfprio2 x130 y30 w100 Choose2", this.spiritFPrio)
-            spiritPrio.AddDDL("vfprio3 x245 y30 w100 Choose3", this.spiritFPrio)
+            spiritPrio.AddDDL("vfprio1 x15 y30 w100 Choose1", this.spiritFArray)
+            spiritPrio.AddDDL("vfprio2 x130 y30 w100 Choose2", this.spiritFArray)
+            spiritPrio.AddDDL("vfprio3 x245 y30 w100 Choose3", this.spiritFArray)
 
             spiritPrio.AddText("c0xFFFFFF x15 y65", "Last Cards")
             spiritPrio.AddDDL("vlprio1 x15 y80 w100 Choose1", this.spiritLPrio)
