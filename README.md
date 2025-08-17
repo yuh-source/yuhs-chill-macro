@@ -1,7 +1,5 @@
 # yuhs-chill-macro
 
-[Join the Discord](https://discord.gg/aZZVgMrXCS)
-
 ## Features
 
 ### Macros
